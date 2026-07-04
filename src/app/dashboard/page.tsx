@@ -13,9 +13,9 @@ const modules = [
     description:
       "Resolve an ERC-8004 agent ID on Monad, validate its agent card, match the endpoint, and verify a wallet signature challenge.",
     icon: ShieldCheck,
-    gradient: "from-[#6E54FF]/25 to-[#836EF9]/10",
-    iconColor: "text-[#DDD7FE]",
-    border: "group-hover:border-[#6E54FF]/45",
+    gradient: "from-accent/15 to-accent/5",
+    iconColor: "text-accent",
+    border: "group-hover:border-accent/35",
   },
   {
     href: "/photo-proof",
@@ -24,9 +24,9 @@ const modules = [
     description:
       "Screenshot agent/MCP configs for security risks — vision audit, cryptographic hash, on-chain anchor on Monad Testnet.",
     icon: Camera,
-    gradient: "from-[#85E6FF]/20 to-[#6E54FF]/10",
-    iconColor: "text-[#85E6FF]",
-    border: "group-hover:border-[#85E6FF]/40",
+    gradient: "from-accent/12 to-accent/5",
+    iconColor: "text-accent",
+    border: "group-hover:border-accent/30",
   },
   {
     href: "/register",
@@ -35,9 +35,9 @@ const modules = [
     description:
       "Mint your MonTrust vision agent on the Identity Registry and link your wallet as the signing endpoint.",
     icon: UserPlus,
-    gradient: "from-[#FF8EE4]/15 to-[#6E54FF]/10",
-    iconColor: "text-[#FF8EE4]",
-    border: "group-hover:border-[#FF8EE4]/35",
+    gradient: "from-accent/10 to-accent/5",
+    iconColor: "text-accent",
+    border: "group-hover:border-accent/30",
   },
   {
     href: "/trust",
@@ -46,9 +46,9 @@ const modules = [
     description:
       "Answer: Was the proof genuine? Was the agent real? Pay-When-It-Works x402 with 0.1 MON on Monad Testnet via MetaMask.",
     icon: ShieldQuestion,
-    gradient: "from-[#6E54FF]/20 to-[#85E6FF]/10",
-    iconColor: "text-[#85E6FF]",
-    border: "group-hover:border-[#85E6FF]/35",
+    gradient: "from-accent/12 to-accent/5",
+    iconColor: "text-accent",
+    border: "group-hover:border-accent/30",
   },
 ];
 
@@ -85,8 +85,8 @@ export default function DashboardPage() {
       </div>
 
       <div className="mb-4 flex items-center gap-2">
-        <Zap className="h-4 w-4 text-amber-400" />
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-slate-500">
+        <Zap className="h-4 w-4 text-accent" />
+        <h2 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
           Workflow Modules
         </h2>
       </div>
@@ -99,22 +99,22 @@ export default function DashboardPage() {
             >
               <div className="flex items-start gap-5">
                 <div
-                  className={`relative flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${m.gradient} border border-white/10`}
+                  className={`relative flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${m.gradient} border border-border`}
                 >
                   <m.icon className={`h-6 w-6 ${m.iconColor}`} />
-                  <span className="absolute -right-1 -top-1 rounded-md bg-slate-900 px-1.5 py-0.5 font-mono text-[10px] font-bold text-slate-400">
+                  <span className="absolute -right-1 -top-1 rounded-md bg-muted px-1.5 py-0.5 font-mono text-[10px] font-bold text-muted-foreground">
                     {m.step}
                   </span>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h2 className="text-lg font-semibold text-slate-100">
+                  <h2 className="text-lg font-semibold text-foreground">
                     {m.title}
                   </h2>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-500">
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                     {m.description}
                   </p>
                 </div>
-                <ArrowRight className="mt-2 h-5 w-5 shrink-0 text-slate-600 transition group-hover:translate-x-1 group-hover:text-[#6E54FF]" />
+                <ArrowRight className="mt-2 h-5 w-5 shrink-0 text-dim transition group-hover:translate-x-1 group-hover:text-accent" />
               </div>
             </Card>
           </Link>

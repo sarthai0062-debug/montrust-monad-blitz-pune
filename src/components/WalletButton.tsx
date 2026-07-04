@@ -55,11 +55,11 @@ const WALLET_OPTIONS: {
 
 export function NetworkBadge() {
   return (
-    <div className="flex shrink-0 flex-col justify-center rounded-xl border border-[#6E54FF]/20 bg-[#6E54FF]/8 px-2.5 py-2 text-center">
-      <p className="text-[9px] font-bold uppercase leading-tight tracking-wider text-slate-500">
+    <div className="flex shrink-0 flex-col justify-center rounded-xl border border-accent/20 bg-accent-subtle px-2.5 py-2 text-center">
+      <p className="text-[9px] font-bold uppercase leading-tight tracking-wider text-muted-foreground">
         {MONAD_TESTNET.name}
       </p>
-      <p className="mt-0.5 font-mono text-[10px] font-semibold text-[#85E6FF]/90">
+      <p className="mt-0.5 font-mono text-[10px] font-semibold text-accent">
         {MONAD_TESTNET.chainId}
       </p>
     </div>
@@ -150,27 +150,27 @@ export function WalletButton() {
 
   if (!mounted || isReconnecting) {
     return (
-      <div className="min-h-[52px] flex-1 animate-pulse rounded-xl bg-white/5" />
+      <div className="min-h-[52px] flex-1 animate-pulse rounded-xl bg-muted" />
     );
   }
 
   if (isConnected && address) {
     return (
       <div className="flex min-w-0 flex-1 items-stretch gap-2">
-        <div className="flex min-w-0 flex-1 flex-col justify-center rounded-xl border border-[#6E54FF]/25 bg-[#6E54FF]/8 px-3 py-2">
+        <div className="flex min-w-0 flex-1 flex-col justify-center rounded-xl border border-accent/20 bg-accent-subtle px-3 py-2">
           <div className="flex items-center justify-between gap-1">
-            <p className="truncate font-mono text-xs font-semibold text-[#DDD7FE]">
+            <p className="truncate font-mono text-xs font-semibold text-foreground">
               {address.slice(0, 6)}…{address.slice(-4)}
             </p>
             {onMonadTestnet ? (
-              <CheckCircle2 className="h-3 w-3 shrink-0 text-emerald-400" />
+              <CheckCircle2 className="h-3 w-3 shrink-0 text-emerald-600" />
             ) : (
-              <AlertTriangle className="h-3 w-3 shrink-0 text-amber-400" />
+              <AlertTriangle className="h-3 w-3 shrink-0 text-amber-600" />
             )}
           </div>
-          <p className="mt-0.5 text-xs font-bold text-[#85E6FF]">
+          <p className="mt-0.5 text-xs font-bold text-accent">
             {balanceLoading ? (
-              <span className="text-slate-500">Loading…</span>
+              <span className="text-muted-foreground">Loading…</span>
             ) : balance ? (
               <>
                 {Number(formatUnits(balance.value, balance.decimals)).toFixed(2)}{" "}
@@ -179,7 +179,7 @@ export function WalletButton() {
             ) : onMonadTestnet ? (
               "0.00 MON"
             ) : (
-              <span className="font-normal text-amber-300/90">Wrong network</span>
+              <span className="font-normal text-amber-600">Wrong network</span>
             )}
           </p>
           {wrongChain && (
@@ -187,7 +187,7 @@ export function WalletButton() {
               type="button"
               disabled={switching}
               onClick={() => switchChain({ chainId: monadTestnet.id })}
-              className="mt-1.5 w-full rounded-md bg-amber-500/90 py-1 text-[10px] font-semibold text-white hover:bg-amber-400 disabled:opacity-60"
+              className="mt-1.5 w-full rounded-md bg-amber-500 py-1 text-[10px] font-semibold text-white hover:bg-amber-600 disabled:opacity-60"
             >
               {switching ? "Switching…" : "Switch to Monad"}
             </button>
@@ -200,7 +200,7 @@ export function WalletButton() {
           type="button"
           onClick={() => disconnect()}
           title={`Disconnect ${provider.label}`}
-          className="flex shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] px-2 text-slate-500 transition hover:border-rose-500/30 hover:bg-rose-500/10 hover:text-rose-300"
+          className="flex shrink-0 items-center justify-center rounded-xl border border-border bg-card px-2 text-muted-foreground transition hover:border-rose-200 hover:bg-rose-50 hover:text-rose-600"
         >
           <LogOut className="h-3.5 w-3.5" />
         </button>
@@ -215,7 +215,7 @@ export function WalletButton() {
           type="button"
           disabled={isPending}
           onClick={() => setModalOpen(true)}
-          className="flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#6E54FF] to-[#836EF9] px-3 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#6E54FF]/30 transition hover:from-[#7B64FF] hover:to-[#9580FA] disabled:opacity-60"
+          className="flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl bg-accent px-3 py-2.5 text-sm font-semibold text-accent-foreground shadow-md shadow-accent/20 transition hover:bg-[#8270ff] disabled:opacity-60"
         >
           {isPending ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -230,7 +230,7 @@ export function WalletButton() {
       </div>
 
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
           <div
             className="absolute inset-0"
             onClick={() => setModalOpen(false)}
@@ -238,19 +238,19 @@ export function WalletButton() {
           />
           <div className="glass-panel glass-panel-glow relative w-full max-w-sm rounded-2xl p-5">
             <div className="mb-4 flex items-center justify-between">
-              <h3 className="font-semibold text-white">Connect a wallet</h3>
+              <h3 className="font-semibold text-foreground">Connect a wallet</h3>
               <button
                 type="button"
                 onClick={() => setModalOpen(false)}
-                className="rounded-lg p-1 text-slate-500 transition hover:bg-white/5 hover:text-slate-300"
+                className="rounded-lg p-1 text-muted-foreground transition hover:bg-hover hover:text-foreground"
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
 
-            <p className="mb-3 text-xs text-slate-400">
+            <p className="mb-3 text-xs text-muted-foreground">
               Connect with MetaMask or Rainbow on{" "}
-              <strong className="text-[#DDD7FE]">Monad Testnet (10143)</strong>
+              <strong className="text-accent">Monad Testnet (10143)</strong>
             </p>
 
             <div className="space-y-2">
@@ -265,22 +265,22 @@ export function WalletButton() {
                     type="button"
                     disabled={isPending || !isInstalled}
                     onClick={() => connectWallet(wallet.id)}
-                    className="flex w-full items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-left transition hover:border-[#6E54FF]/30 hover:bg-[#6E54FF]/10 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex w-full items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 text-left transition hover:border-accent/30 hover:bg-accent-subtle disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <span className="text-2xl" aria-hidden>
                       {wallet.icon}
                     </span>
                     <div className="flex-1">
-                      <p className="text-sm font-medium text-slate-100">
+                      <p className="text-sm font-medium text-foreground">
                         {wallet.label}
                       </p>
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-muted-foreground">
                         {wallet.description}
                       </p>
                     </div>
                     <span
                       className={`text-[10px] font-semibold uppercase tracking-wide ${
-                        isInstalled ? "text-emerald-400" : "text-slate-600"
+                        isInstalled ? "text-emerald-600" : "text-dim"
                       }`}
                     >
                       {isInstalled ? "Detected" : "Not installed"}
@@ -291,16 +291,16 @@ export function WalletButton() {
             </div>
 
             {connectError && (
-              <p className="mt-3 text-xs text-rose-400">{connectError.message}</p>
+              <p className="mt-3 text-xs text-rose-600">{connectError.message}</p>
             )}
 
-            <p className="mt-4 text-center text-[10px] text-slate-500">
+            <p className="mt-4 text-center text-[10px] text-muted-foreground">
               Need MON?{" "}
               <a
                 href={MONAD_TESTNET.faucetUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="text-[#85E6FF] hover:underline"
+                className="text-accent hover:underline"
               >
                 faucet.monad.xyz
               </a>

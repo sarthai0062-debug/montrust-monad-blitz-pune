@@ -1,46 +1,67 @@
 @import "tailwindcss";
 
-/* Monad brand palette — https://www.monad.xyz/brand-and-media-kit */
+/* Monad app theme — sourced from https://app.monad.xyz/ CSS tokens */
 :root {
   --monad-purple: #6e54ff;
+  --monad-purple-hover: #8270ff;
+  --monad-purple-pressed: #5740d6;
+  --monad-purple-subtle: #f0eeff;
+  --monad-purple-border: #6e54ff66;
   --monad-purple-light: #836ef9;
-  --monad-lavender: #ddd7fe;
-  --monad-bg: #0e091c;
-  --monad-bg-deep: #07040f;
-  --monad-cyan: #85e6ff;
-  --monad-cyan-muted: #b9e3f9;
-  --monad-pink: #ff8ee4;
-  --monad-orange: #ffae45;
 
-  --bg-0: var(--monad-bg-deep);
-  --bg-1: var(--monad-bg);
-  --bg-2: #15102a;
-  --surface: rgba(14, 9, 28, 0.72);
-  --surface-solid: #15102a;
-  --surface-elevated: rgba(30, 22, 55, 0.75);
-  --border: rgba(110, 84, 255, 0.22);
-  --border-strong: rgba(110, 84, 255, 0.45);
-  --text: #fbfaf9;
-  --text-muted: #a8a3b8;
-  --text-dim: #6b6580;
+  --bg-default: #fbfaf9;
+  --bg-elevated: #ffffff;
+  --bg-subtle: #f4f4f8;
+  --bg-hover: #0000000a;
+  --bg-pressed: #00000014;
+  --bg-inverse: #26262b;
+
+  --text-primary: #202020;
+  --text-secondary: #9a9a9a;
+  --text-tertiary: #6c6c6c;
+  --text-accent: #6e54ff;
+  --text-on-accent: #ffffff;
+  --text-inverse: #ffffff;
+
+  --border-default: #e9e9f5;
+  --border-hover: #dadae8;
+  --border-strong: #8e8ea6;
+  --border-focus: #6e54ff;
+
+  /* Semantic aliases */
+  --bg-0: var(--bg-default);
+  --bg-1: var(--bg-elevated);
+  --bg-2: var(--bg-subtle);
+  --surface: var(--bg-elevated);
+  --surface-solid: var(--bg-elevated);
+  --surface-elevated: var(--bg-elevated);
+  --border: var(--border-default);
+  --text: var(--text-primary);
+  --text-muted: var(--text-secondary);
+  --text-dim: var(--text-tertiary);
   --accent: var(--monad-purple);
-  --accent-bright: var(--monad-lavender);
-  --cyan: var(--monad-cyan);
-  --violet: var(--monad-purple-light);
-  --emerald: #34d399;
-  --amber: var(--monad-orange);
-  --rose: #ff6b8a;
-  --glow: rgba(110, 84, 255, 0.5);
-  --radius: 1rem;
+  --accent-bright: var(--monad-purple-hover);
+  --glow: rgba(110, 84, 255, 0.15);
+  --radius: 0.625rem;
+
+  --emerald: #16a34a;
+  --amber: #ca8a04;
+  --rose: #dc2626;
 }
 
 @theme inline {
-  --color-background: var(--bg-0);
-  --color-foreground: var(--text);
-  --color-monad-purple: var(--monad-purple);
-  --color-monad-lavender: var(--monad-lavender);
-  --color-monad-cyan: var(--monad-cyan);
-  --color-monad-pink: var(--monad-pink);
+  --color-background: var(--bg-default);
+  --color-foreground: var(--text-primary);
+  --color-muted: var(--bg-subtle);
+  --color-muted-foreground: var(--text-secondary);
+  --color-dim: var(--text-tertiary);
+  --color-border: var(--border-default);
+  --color-accent: var(--monad-purple);
+  --color-accent-foreground: var(--text-on-accent);
+  --color-accent-subtle: var(--monad-purple-subtle);
+  --color-card: var(--bg-elevated);
+  --color-hover: var(--bg-hover);
+  --color-inverse: var(--bg-inverse);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -54,8 +75,8 @@ html {
 }
 
 body {
-  background: var(--bg-0);
-  color: var(--text);
+  background: var(--bg-default);
+  color: var(--text-primary);
   font-family: var(--font-sans), system-ui, sans-serif;
   min-height: 100vh;
 }
@@ -68,45 +89,43 @@ button {
 }
 
 ::selection {
-  background: rgba(110, 84, 255, 0.4);
-  color: white;
+  background: rgba(110, 84, 255, 0.2);
+  color: var(--text-primary);
 }
 
 .mesh-bg {
-  background-color: var(--bg-0);
+  background-color: var(--bg-default);
   background-image:
-    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(110, 84, 255, 0.28), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(133, 230, 255, 0.14), transparent 50%),
-    radial-gradient(ellipse 50% 30% at 50% 100%, rgba(255, 142, 228, 0.08), transparent 55%);
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(110, 84, 255, 0.07), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(110, 84, 255, 0.04), transparent 50%),
+    radial-gradient(ellipse 50% 30% at 50% 100%, rgba(110, 84, 255, 0.03), transparent 55%);
 }
 
 .grid-overlay {
   background-image:
-    linear-gradient(rgba(110, 84, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(110, 84, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(110, 84, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(110, 84, 255, 0.04) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
 }
 
 .glass-panel {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.03) inset,
-    0 20px 50px -20px rgba(0, 0, 0, 0.55);
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 16px rgba(0, 0, 0, 0.03);
 }
 
 .glass-panel-glow {
   box-shadow:
-    0 0 0 1px rgba(221, 215, 254, 0.06) inset,
-    0 0 40px -10px var(--glow),
-    0 24px 60px -24px rgba(0, 0, 0, 0.55);
+    0 0 0 1px rgba(110, 84, 255, 0.08) inset,
+    0 0 32px -12px var(--glow),
+    0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #fbfaf9 0%, var(--monad-lavender) 35%, var(--monad-cyan) 100%);
+  background: linear-gradient(135deg, #202020 0%, var(--monad-purple) 55%, var(--monad-purple-hover) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -139,41 +158,40 @@ button {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(110, 84, 255, 0.4),
+    rgba(110, 84, 255, 0.25),
     transparent
   );
   background-size: 200% 100%;
   animation: shimmer 3s linear infinite;
 }
 
-/* Sonner toast overrides — Monad theme */
+/* Sonner toast overrides — Monad app theme */
 [data-sonner-toaster] {
-  --normal-bg: #15102a;
-  --normal-border: rgba(110, 84, 255, 0.35);
-  --normal-text: #fbfaf9;
-  --success-bg: #15102a;
-  --success-border: rgba(52, 211, 153, 0.4);
-  --error-bg: #15102a;
-  --error-border: rgba(255, 107, 138, 0.4);
-  --info-bg: #15102a;
-  --info-border: rgba(133, 230, 255, 0.35);
+  --normal-bg: var(--bg-elevated);
+  --normal-border: var(--border-default);
+  --normal-text: var(--text-primary);
+  --success-bg: var(--bg-elevated);
+  --success-border: rgba(22, 163, 74, 0.35);
+  --error-bg: var(--bg-elevated);
+  --error-border: rgba(220, 38, 38, 0.35);
+  --info-bg: var(--bg-elevated);
+  --info-border: rgba(110, 84, 255, 0.35);
 }
 
 [data-sonner-toast] {
   font-family: var(--font-sans), system-ui, sans-serif !important;
-  backdrop-filter: blur(12px);
 }
 
 [data-sonner-toast][data-type="success"] [data-icon] {
-  color: #34d399 !important;
+  color: var(--emerald) !important;
 }
 
 [data-sonner-toast][data-type="error"] [data-icon] {
-  color: #ff6b8a !important;
+  color: var(--rose) !important;
 }
 
 [data-sonner-toast][data-type="info"] [data-icon] {
-  color: var(--monad-cyan) !important;
+  color: var(--monad-purple) !important;
 }
 
 [data-sonner-toast] [data-title] {

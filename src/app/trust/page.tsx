@@ -114,11 +114,11 @@ export default function TrustPage() {
 
       <Card className="mb-6" glow>
         <SectionTitle>Target agent</SectionTitle>
-        <p className="mb-4 text-xs text-slate-500">
+        <p className="mb-4 text-xs text-muted-foreground">
           Paste an OpenClaw or ERC-8004 agent ID from{" "}
           <a
             href="https://testnet.monadexplorer.com"
-            className="text-cyan-400 hover:underline"
+            className="text-accent hover:underline"
           >
             Monad Testnet
           </a>{" "}
@@ -154,8 +154,8 @@ export default function TrustPage() {
 
       {loading && (
         <Card>
-          <p className="flex items-center gap-2 text-sm text-slate-500">
-            <Loader2 className="h-4 w-4 animate-spin text-indigo-400" />
+          <p className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Loader2 className="h-4 w-4 animate-spin text-accent" />
             Building trust report…
           </p>
         </Card>
@@ -176,16 +176,16 @@ export default function TrustPage() {
                 }
               />
             </div>
-            <p className="text-sm text-slate-400">{report.summary}</p>
-            <p className="mt-2 text-xs text-slate-500">
-              Source: <strong className="capitalize text-slate-300">{report.agentSource}</strong>{" "}
-              · Endpoint: <code className="text-[10px] text-cyan-400/80">{report.endpointUrl}</code>
+            <p className="text-sm text-muted-foreground">{report.summary}</p>
+            <p className="mt-2 text-xs text-muted-foreground">
+              Source: <strong className="capitalize text-foreground/80">{report.agentSource}</strong>{" "}
+              · Endpoint: <code className="text-[10px] text-accent/80">{report.endpointUrl}</code>
             </p>
           </Card>
 
           {report.linkSafety.findings.length > 0 && (
             <Card className="mb-6">
-              <SectionTitle icon={<Link2 className="h-4 w-4 text-amber-400" />}>
+              <SectionTitle icon={<Link2 className="h-4 w-4 text-amber-600" />}>
                 Link safety scan
               </SectionTitle>
               <ul className="space-y-2 text-xs">
@@ -194,8 +194,8 @@ export default function TrustPage() {
                     key={f.id}
                     className={`rounded-lg border px-3 py-2 ${
                       f.passed
-                        ? "border-emerald-500/20 bg-emerald-500/5 text-emerald-300"
-                        : "border-amber-500/20 bg-amber-500/5 text-amber-200"
+                        ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                        : "border-amber-200 bg-amber-50 text-amber-700"
                     }`}
                   >
                     [{f.severity}] {f.label}: {f.detail}
@@ -211,15 +211,15 @@ export default function TrustPage() {
                 <div className="flex items-start gap-3">
                   <ShieldQuestion
                     className={`mt-0.5 h-5 w-5 shrink-0 ${
-                      q.passed ? "text-emerald-400" : "text-amber-400"
+                      q.passed ? "text-emerald-600" : "text-amber-600"
                     }`}
                   />
                   <div>
-                    <p className="font-medium text-slate-100">{q.question}</p>
-                    <p className="mt-1 text-sm capitalize text-slate-500">
-                      Answer: <strong className="text-slate-300">{q.answer}</strong>
+                    <p className="font-medium text-foreground">{q.question}</p>
+                    <p className="mt-1 text-sm capitalize text-muted-foreground">
+                      Answer: <strong className="text-foreground/80">{q.answer}</strong>
                     </p>
-                    <p className="mt-1 text-xs text-slate-500">{q.detail}</p>
+                    <p className="mt-1 text-xs text-muted-foreground">{q.detail}</p>
                   </div>
                 </div>
               </Card>
@@ -227,7 +227,7 @@ export default function TrustPage() {
           </div>
 
           <Card className="mb-6" glow>
-            <SectionTitle icon={<CreditCard className="h-4 w-4 text-cyan-400" />}>
+            <SectionTitle icon={<CreditCard className="h-4 w-4 text-accent" />}>
               x402 Payment (0.1 MON)
             </SectionTitle>
             {x402Config && (
@@ -240,20 +240,20 @@ export default function TrustPage() {
                 ].map(([label, value]) => (
                   <div
                     key={label}
-                    className="rounded-lg border border-white/5 bg-white/[0.02] p-2.5"
+                    className="rounded-lg border border-border bg-muted/50 p-2.5"
                   >
-                    <dt className="text-[10px] font-bold uppercase tracking-widest text-slate-600">
+                    <dt className="text-[10px] font-bold uppercase tracking-widest text-dim">
                       {label}
                     </dt>
-                    <dd className="mt-0.5 text-slate-300">{value}</dd>
+                    <dd className="mt-0.5 text-foreground/80">{value}</dd>
                   </div>
                 ))}
               </dl>
             )}
-            <p className="mb-2 text-sm text-slate-400">
+            <p className="mb-2 text-sm text-muted-foreground">
               {report.payWhenItWorks.reason}
             </p>
-            <p className="mb-4 text-xs text-slate-500">
+            <p className="mb-4 text-xs text-muted-foreground">
               {report.payWhenItWorks.x402Note}
             </p>
 
@@ -294,13 +294,13 @@ export default function TrustPage() {
             </div>
 
             {!report.payWhenItWorks.eligible && (
-              <p className="mt-3 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-200">
+              <p className="mt-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-700">
                 Complete agent signature + photo proof anchoring before MON payment is enabled.
               </p>
             )}
 
             {x402Status && (
-              <p className="mt-3 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-xs text-slate-400">
+              <p className="mt-3 rounded-lg border border-border bg-muted/50 px-3 py-2 text-xs text-muted-foreground">
                 {x402Status}
               </p>
             )}

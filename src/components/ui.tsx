@@ -12,15 +12,15 @@ export function PageHeader({
   return (
     <header className="mb-10">
       {step && (
-        <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#6E54FF]/35 bg-[#6E54FF]/12 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-[#DDD7FE]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#85E6FF] animate-pulse-glow" />
+        <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent-subtle px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-accent">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse-glow" />
           {step}
         </span>
       )}
       <h1 className="text-3xl font-bold tracking-tight text-gradient sm:text-4xl">
         {title}
       </h1>
-      <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-400">
+      <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
         {description}
       </p>
     </header>
@@ -38,7 +38,7 @@ export function Card({
 }) {
   return (
     <div
-      className={`glass-panel rounded-2xl p-5 sm:p-6 ${glow ? "glass-panel-glow border-[#6E54FF]/35" : ""} ${className}`}
+      className={`glass-panel rounded-2xl p-5 sm:p-6 ${glow ? "glass-panel-glow border-accent/25" : ""} ${className}`}
     >
       {children}
     </div>
@@ -52,13 +52,13 @@ export function StatusBadge({
 }) {
   const styles = {
     verified:
-      "bg-emerald-500/15 text-emerald-300 border-emerald-500/30 shadow-[0_0_20px_-8px_rgba(52,211,153,0.5)]",
+      "bg-emerald-50 text-emerald-700 border-emerald-200",
     failed:
-      "bg-rose-500/15 text-rose-300 border-rose-500/30 shadow-[0_0_20px_-8px_rgba(251,113,133,0.4)]",
+      "bg-rose-50 text-rose-700 border-rose-200",
     warning:
-      "bg-amber-500/15 text-amber-200 border-amber-500/30 shadow-[0_0_20px_-8px_rgba(251,191,36,0.35)]",
+      "bg-amber-50 text-amber-700 border-amber-200",
     pending:
-      "bg-[#6E54FF]/15 text-[#DDD7FE] border-[#6E54FF]/35 shadow-[0_0_20px_-8px_rgba(110,84,255,0.45)]",
+      "bg-accent-subtle text-accent border-accent/25",
   };
   const labels = {
     verified: "Verified",
@@ -76,7 +76,7 @@ export function StatusBadge({
 }
 
 const btnBase =
-  "inline-flex items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6E54FF]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0E091C]";
+  "inline-flex items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
 export function Button({
   variant = "primary",
@@ -90,14 +90,14 @@ export function Button({
 }) {
   const variants = {
     primary:
-      "bg-gradient-to-r from-[#6E54FF] to-[#836EF9] text-white shadow-lg shadow-[#6E54FF]/30 hover:from-[#7B64FF] hover:to-[#9580FA] hover:shadow-[#6E54FF]/45",
+      "bg-accent text-accent-foreground shadow-md shadow-accent/20 hover:bg-[#8270ff] hover:shadow-accent/30",
     secondary:
-      "border border-[#6E54FF]/35 bg-[#6E54FF]/10 text-[#DDD7FE] hover:bg-[#6E54FF]/18 hover:border-[#6E54FF]/50",
+      "border border-accent/25 bg-accent-subtle text-accent hover:bg-accent/10 hover:border-accent/40",
     ghost:
-      "text-slate-400 hover:bg-white/5 hover:text-slate-200",
+      "text-muted-foreground hover:bg-hover hover:text-foreground",
     danger:
-      "border border-rose-500/30 bg-rose-500/10 text-rose-300 hover:bg-rose-500/20",
-    cyan: "bg-gradient-to-r from-[#85E6FF] to-[#6E54FF] text-[#0E091C] shadow-lg shadow-[#85E6FF]/25 hover:shadow-[#85E6FF]/40 font-bold",
+      "border border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100",
+    cyan: "bg-accent text-accent-foreground shadow-md shadow-accent/20 hover:bg-[#8270ff] font-bold",
   };
   const sizes = {
     sm: "px-3 py-1.5 text-xs",
@@ -120,7 +120,7 @@ export function Input({
 }: InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
-      className={`w-full rounded-xl border border-white/10 bg-[#15102a]/80 px-3.5 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 outline-none transition focus:border-[#6E54FF]/50 focus:bg-[#15102a] focus:ring-2 focus:ring-[#6E54FF]/20 ${className}`}
+      className={`w-full rounded-xl border border-border bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none transition focus:border-accent/50 focus:ring-2 focus:ring-accent/15 ${className}`}
       {...props}
     />
   );
@@ -133,7 +133,7 @@ export function Select({
 }: React.SelectHTMLAttributes<HTMLSelectElement>) {
   return (
     <select
-      className={`w-full rounded-xl border border-white/10 bg-[#15102a]/80 px-3.5 py-2.5 text-sm text-slate-100 outline-none transition focus:border-[#6E54FF]/50 focus:ring-2 focus:ring-[#6E54FF]/20 ${className}`}
+      className={`w-full rounded-xl border border-border bg-card px-3.5 py-2.5 text-sm text-foreground outline-none transition focus:border-accent/50 focus:ring-2 focus:ring-accent/15 ${className}`}
       {...props}
     >
       {children}
@@ -150,7 +150,7 @@ export function Label({
 }) {
   return (
     <span
-      className={`mb-1.5 block text-xs font-medium uppercase tracking-wide text-slate-500 ${className}`}
+      className={`mb-1.5 block text-xs font-medium uppercase tracking-wide text-muted-foreground ${className}`}
     >
       {children}
     </span>
@@ -165,7 +165,7 @@ export function SectionTitle({
   icon?: React.ReactNode;
 }) {
   return (
-    <h2 className="mb-4 flex items-center gap-2 text-base font-semibold text-slate-100">
+    <h2 className="mb-4 flex items-center gap-2 text-base font-semibold text-foreground">
       {icon}
       {children}
     </h2>
@@ -183,12 +183,12 @@ export function StatCard({
 }) {
   return (
     <Card className="relative overflow-hidden">
-      <div className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-[#6E54FF]/15 blur-2xl" />
-      <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
+      <div className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-accent/8 blur-2xl" />
+      <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
         {label}
       </p>
-      <p className="mt-2 text-xl font-bold text-slate-100">{value}</p>
-      {sub && <p className="mt-1 text-xs text-[#85E6FF]/80">{sub}</p>}
+      <p className="mt-2 text-xl font-bold text-foreground">{value}</p>
+      {sub && <p className="mt-1 text-xs text-accent">{sub}</p>}
     </Card>
   );
 }
@@ -206,10 +206,10 @@ export function StepPill({
     <div
       className={`rounded-full px-3 py-1.5 text-xs font-medium transition-all ${
         active
-          ? "border border-[#85E6FF]/45 bg-[#85E6FF]/12 text-[#85E6FF] shadow-[0_0_24px_-8px_rgba(133,230,255,0.45)]"
+          ? "border border-accent/35 bg-accent-subtle text-accent shadow-sm shadow-accent/10"
           : done
-            ? "border border-[#6E54FF]/30 bg-[#6E54FF]/10 text-[#DDD7FE]"
-            : "border border-white/5 bg-white/[0.02] text-slate-600"
+            ? "border border-accent/20 bg-accent-subtle/60 text-accent"
+            : "border border-border bg-muted text-dim"
       }`}
     >
       {label}

@@ -131,8 +131,8 @@ export default function VerifyPage() {
             onClick={() => setMode("onchain")}
             className={`rounded-full px-4 py-1.5 text-xs font-semibold transition ${
               mode === "onchain"
-                ? "border border-indigo-500/40 bg-indigo-500/15 text-indigo-200"
-                : "border border-transparent text-slate-500 hover:bg-white/5"
+                ? "border border-accent/30 bg-accent-subtle text-accent"
+                : "border border-transparent text-muted-foreground hover:bg-hover"
             }`}
           >
             On-chain demo (Agent #1)
@@ -146,8 +146,8 @@ export default function VerifyPage() {
             }}
             className={`rounded-full px-4 py-1.5 text-xs font-semibold transition ${
               mode === "local"
-                ? "border border-indigo-500/40 bg-indigo-500/15 text-indigo-200"
-                : "border border-transparent text-slate-500 hover:bg-white/5"
+                ? "border border-accent/30 bg-accent-subtle text-accent"
+                : "border border-transparent text-muted-foreground hover:bg-hover"
             }`}
           >
             Your registered agent
@@ -174,9 +174,9 @@ export default function VerifyPage() {
         </div>
 
         {mode === "onchain" && (
-          <p className="mt-3 text-xs text-slate-500">
+          <p className="mt-3 text-xs text-muted-foreground">
             Demo: Agent #1 is registered with{" "}
-            <code className="text-cyan-400">{DEMO_AGENT.mcpEndpoint}</code> — try
+            <code className="text-accent">{DEMO_AGENT.mcpEndpoint}</code> — try
             that URL for a partial match, or use your MonTrust endpoint after
             registration.
           </p>
@@ -206,7 +206,7 @@ export default function VerifyPage() {
           </Button>
         </div>
         {error && (
-          <p className="mt-3 rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">
+          <p className="mt-3 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
             {error}
           </p>
         )}
@@ -215,18 +215,18 @@ export default function VerifyPage() {
       {result && (
         <Card glow>
           <div className="mb-4 flex items-center justify-between">
-            <SectionTitle icon={<ShieldCheck className="h-4 w-4 text-indigo-400" />}>
+            <SectionTitle icon={<ShieldCheck className="h-4 w-4 text-accent" />}>
               Verification Result
             </SectionTitle>
             <StatusBadge status={result.status} />
           </div>
-          <p className="mb-4 text-sm text-slate-400">{result.summary}</p>
+          <p className="mb-4 text-sm text-muted-foreground">{result.summary}</p>
 
           {result.agentCard && (
-            <div className="mb-4 rounded-xl border border-indigo-500/20 bg-indigo-500/5 p-4 text-sm">
-              <p className="font-medium text-slate-100">{result.agentCard.name}</p>
-              <p className="text-slate-500">{result.agentCard.description}</p>
-              <p className="mt-2 font-mono text-xs text-slate-500">
+            <div className="mb-4 rounded-xl border border-accent/20 bg-accent-subtle/50 p-4 text-sm">
+              <p className="font-medium text-foreground">{result.agentCard.name}</p>
+              <p className="text-muted-foreground">{result.agentCard.description}</p>
+              <p className="mt-2 font-mono text-xs text-muted-foreground">
                 Owner: {result.agentCard.owner}
               </p>
             </div>
@@ -238,16 +238,16 @@ export default function VerifyPage() {
                 key={c.id}
                 className={`flex items-start gap-3 rounded-xl border px-3 py-2.5 text-sm ${
                   c.passed
-                    ? "border-emerald-500/20 bg-emerald-500/5"
+                    ? "border-emerald-200 bg-emerald-50"
                     : "border-rose-500/20 bg-rose-500/5"
                 }`}
               >
-                <span className={c.passed ? "text-emerald-400" : "text-rose-400"}>
+                <span className={c.passed ? "text-emerald-600" : "text-rose-600"}>
                   {c.passed ? "✓" : "✗"}
                 </span>
                 <div>
-                  <p className="font-medium text-slate-200">{c.label}</p>
-                  <p className="text-slate-500">{c.detail}</p>
+                  <p className="font-medium text-foreground">{c.label}</p>
+                  <p className="text-muted-foreground">{c.detail}</p>
                 </div>
               </li>
             ))}

@@ -311,7 +311,7 @@ export default function PhotoProofPage() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <Card glow>
-          <SectionTitle icon={<Scan className="h-4 w-4 text-cyan-400" />}>
+          <SectionTitle icon={<Scan className="h-4 w-4 text-accent" />}>
             Vulnerability audit
           </SectionTitle>
           <Select
@@ -330,14 +330,14 @@ export default function PhotoProofPage() {
               </option>
             ))}
           </Select>
-          <p className="text-sm text-slate-400">{task.question}</p>
+          <p className="text-sm text-muted-foreground">{task.question}</p>
 
           {imagePrompt && (
-            <div className="mt-4 rounded-xl border border-dashed border-cyan-500/30 bg-cyan-500/5 p-3">
-              <p className="text-xs font-semibold uppercase tracking-wide text-cyan-300">
+            <div className="mt-4 rounded-xl border border-dashed border-accent/25 bg-accent-subtle/50 p-3">
+              <p className="text-xs font-semibold uppercase tracking-wide text-accent">
                 Image generation prompt
               </p>
-              <p className="mt-1 text-xs leading-relaxed text-slate-400">
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                 {imagePrompt.prompt}
               </p>
               <button
@@ -348,7 +348,7 @@ export default function PhotoProofPage() {
                   notify.success("Prompt copied to clipboard");
                   setTimeout(() => setCopiedPrompt(false), 2000);
                 }}
-                className="mt-2 text-xs font-medium text-cyan-400 hover:underline"
+                className="mt-2 text-xs font-medium text-accent hover:underline"
               >
                 {copiedPrompt ? "Copied!" : "Copy prompt for DALL·E / Midjourney"}
               </button>
@@ -356,7 +356,7 @@ export default function PhotoProofPage() {
           )}
 
           {visionModel && (
-            <p className="mt-2 text-xs text-indigo-300/80">
+            <p className="mt-2 text-xs text-accent">
               Vision: {visionModel} via NVIDIA NIM
             </p>
           )}
@@ -394,7 +394,7 @@ export default function PhotoProofPage() {
             Upload Screenshot Proof
           </Button>
           {error && (
-            <p className="mt-2 rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">
+            <p className="mt-2 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
               {error}
             </p>
           )}
@@ -405,14 +405,14 @@ export default function PhotoProofPage() {
             <img
               src={imagePreview}
               alt="Proof"
-              className="mb-4 max-h-52 w-full rounded-xl border border-white/10 object-cover shadow-lg"
+              className="mb-4 max-h-52 w-full rounded-xl border border-border object-cover shadow-lg"
             />
           )}
 
           {vision && (
-            <div className="mb-4 rounded-xl border border-indigo-500/20 bg-indigo-500/5 p-4 text-sm">
+            <div className="mb-4 rounded-xl border border-accent/20 bg-accent-subtle/50 p-4 text-sm">
               <div className="flex items-center gap-2">
-                <span className="font-medium text-slate-200">Vision answer:</span>
+                <span className="font-medium text-foreground">Vision answer:</span>
                 <StatusBadge
                   status={
                     vision.answer === "yes"
@@ -423,31 +423,31 @@ export default function PhotoProofPage() {
                   }
                 />
               </div>
-              <p className="mt-1 capitalize text-slate-100">{vision.answer}</p>
-              <p className="text-slate-500">
+              <p className="mt-1 capitalize text-foreground">{vision.answer}</p>
+              <p className="text-muted-foreground">
                 Confidence: {(vision.confidence * 100).toFixed(0)}%
               </p>
-              <p className="mt-1 text-slate-400">{vision.reason}</p>
+              <p className="mt-1 text-muted-foreground">{vision.reason}</p>
               {visionModel && (
-                <p className="mt-2 text-xs text-indigo-300/70">Model: {visionModel}</p>
+                <p className="mt-2 text-xs text-accent/80">Model: {visionModel}</p>
               )}
             </div>
           )}
 
           {imageHash && (
-            <p className="mb-2 font-mono text-xs text-slate-500">
+            <p className="mb-2 font-mono text-xs text-muted-foreground">
               Image SHA-256: {imageHash.slice(0, 16)}…
             </p>
           )}
 
           {proofHash && (
-            <p className="mb-4 font-mono text-xs break-all text-cyan-400/80">
+            <p className="mb-4 font-mono text-xs break-all text-accent/80">
               Proof hash: {proofHash}
             </p>
           )}
 
           {stepIndex >= 4 && proofHash && (
-            <div className="space-y-3 border-t border-white/10 pt-4">
+            <div className="space-y-3 border-t border-border pt-4">
               {!registryAddress ? (
                 <Button
                   variant="secondary"
@@ -460,7 +460,7 @@ export default function PhotoProofPage() {
                     : "Deploy ProofAnchor Contract"}
                 </Button>
               ) : (
-                <p className="font-mono text-xs text-slate-500">
+                <p className="font-mono text-xs text-muted-foreground">
                   Registry: {registryAddress.slice(0, 10)}…
                 </p>
               )}
@@ -480,7 +480,7 @@ export default function PhotoProofPage() {
                   href={`${MONAD_TESTNET.explorerUrl}/tx/${txHash}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="block text-xs text-cyan-400 hover:underline"
+                  className="block text-xs text-accent hover:underline"
                 >
                   View tx: {txHash.slice(0, 14)}…
                 </a>
@@ -489,8 +489,8 @@ export default function PhotoProofPage() {
           )}
 
           {step === "verify" && proof && proofHash && (
-            <div className="mt-4 space-y-2 border-t border-white/10 pt-4">
-              <p className="text-sm font-medium text-slate-200">
+            <div className="mt-4 space-y-2 border-t border-border pt-4">
+              <p className="text-sm font-medium text-foreground">
                 Integrity check
               </p>
               <div className="flex gap-2">
@@ -516,7 +516,7 @@ export default function PhotoProofPage() {
               </div>
               {verifyOk !== null && (
                 <p
-                  className={`flex items-center gap-2 text-sm ${verifyOk ? "text-emerald-400" : "text-rose-400"}`}
+                  className={`flex items-center gap-2 text-sm ${verifyOk ? "text-emerald-600" : "text-rose-600"}`}
                 >
                   <CheckCircle2 className="h-4 w-4" />
                   {verifyOk

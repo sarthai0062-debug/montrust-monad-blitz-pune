@@ -29,18 +29,18 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="relative z-10 flex h-screen w-[17.5rem] shrink-0 flex-col border-r border-[#6E54FF]/10 bg-[#0E091C]/85 backdrop-blur-xl">
-      <div className="border-b border-[#6E54FF]/10 px-5 py-6">
+    <aside className="relative z-10 flex h-screen w-[17.5rem] shrink-0 flex-col border-r border-border bg-card">
+      <div className="border-b border-border px-5 py-6">
         <Link href="/dashboard" className="group flex items-center gap-3">
-          <div className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-[#6E54FF] to-[#836EF9] shadow-lg shadow-[#6E54FF]/35 transition group-hover:shadow-[#6E54FF]/55">
-            <Shield className="h-5 w-5 text-white" />
-            <Sparkles className="absolute -right-1 -top-1 h-3.5 w-3.5 text-[#85E6FF]" />
+          <div className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-accent shadow-md shadow-accent/25 transition group-hover:shadow-accent/40">
+            <Shield className="h-5 w-5 text-accent-foreground" />
+            <Sparkles className="absolute -right-1 -top-1 h-3.5 w-3.5 text-accent-foreground/80" />
           </div>
           <div>
-            <p className="text-sm font-bold tracking-tight text-[#FBFAF9]">
+            <p className="text-sm font-bold tracking-tight text-foreground">
               MonTrust
             </p>
-            <p className="text-[11px] font-medium text-[#DDD7FE]/80">
+            <p className="text-[11px] font-medium text-muted-foreground">
               Agent Security Suite
             </p>
           </div>
@@ -58,12 +58,12 @@ export function Sidebar() {
               href={href}
               className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
                 active
-                  ? "border border-[#6E54FF]/40 bg-gradient-to-r from-[#6E54FF]/22 to-[#836EF9]/10 text-white shadow-[0_0_30px_-12px_rgba(110,84,255,0.65)]"
-                  : "border border-transparent text-slate-400 hover:border-[#6E54FF]/15 hover:bg-[#6E54FF]/5 hover:text-slate-200"
+                  ? "border border-accent/25 bg-accent-subtle text-accent shadow-sm shadow-accent/10"
+                  : "border border-transparent text-muted-foreground hover:border-border hover:bg-hover hover:text-foreground"
               }`}
             >
               <Icon
-                className={`h-4 w-4 shrink-0 ${active ? "text-[#85E6FF]" : "text-slate-500 group-hover:text-[#DDD7FE]"}`}
+                className={`h-4 w-4 shrink-0 ${active ? "text-accent" : "text-dim group-hover:text-foreground"}`}
               />
               {label}
             </Link>
@@ -71,7 +71,7 @@ export function Sidebar() {
         })}
       </nav>
 
-      <div className="border-t border-[#6E54FF]/10 p-4">
+      <div className="border-t border-border p-4">
         <WalletButton />
       </div>
     </aside>

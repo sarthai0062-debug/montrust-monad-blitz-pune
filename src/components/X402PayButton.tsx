@@ -98,7 +98,7 @@ export function X402PayButton({
         )}
         Pay {summary.price} {summary.asset} via MetaMask (x402)
       </Button>
-      <p className="text-[10px] text-slate-500">
+      <p className="text-[10px] text-muted-foreground">
         {summary.price} {summary.asset} on {summary.network} — MetaMask sends native MON to seller.
         {mode === "vision" ? " Settlement only if trust checks pass." : ""}
       </p>

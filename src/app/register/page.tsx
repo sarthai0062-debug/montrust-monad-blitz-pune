@@ -95,18 +95,18 @@ export default function RegisterPage() {
   const steps = [
     <>
       Connect wallet with MON on{" "}
-      <strong className="text-slate-200">Monad Testnet</strong> (chain 10143).
+      <strong className="text-foreground">Monad Testnet</strong> (chain 10143).
       Faucet: faucet.monad.xyz
     </>,
     <>
       Register agent — mints NFT on Identity Registry{" "}
-      <code className="text-cyan-400">
+      <code className="text-accent">
         {ERC8004.identityRegistry.slice(0, 10)}…
       </code>
     </>,
     <>
       Use your new agent ID in Photo Proof and verify with endpoint{" "}
-      <code className="text-cyan-400">{challengeEndpoint}</code>
+      <code className="text-accent">{challengeEndpoint}</code>
     </>,
   ];
 
@@ -119,10 +119,10 @@ export default function RegisterPage() {
       />
 
       <Card className="mb-6" glow>
-        <ol className="space-y-4 text-sm text-slate-400">
+        <ol className="space-y-4 text-sm text-muted-foreground">
           {steps.map((content, i) => (
             <li key={i} className="flex gap-3">
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-indigo-500/30 bg-indigo-500/10 text-xs font-bold text-indigo-300">
+              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-accent/25 bg-accent-subtle text-xs font-bold text-accent">
                 {i + 1}
               </span>
               <span className="pt-0.5">{content}</span>
@@ -143,14 +143,14 @@ export default function RegisterPage() {
           Register Agent On-Chain
         </Button>
         {error && (
-          <p className="mt-3 text-sm text-rose-400">{error}</p>
+          <p className="mt-3 text-sm text-rose-600">{error}</p>
         )}
         {registeredId && (
           <div className="mt-4 flex items-center gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-sm text-emerald-200">
-            <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-400" />
+            <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" />
             <div>
               <p className="font-semibold">Agent registered!</p>
-              <p className="text-emerald-300/80">
+              <p className="text-emerald-700/80">
                 Agent ID: <strong>#{registeredId}</strong> — use this in Photo
                 Proof and Agent Verifier.
               </p>
@@ -161,7 +161,7 @@ export default function RegisterPage() {
 
       <Card>
         <SectionTitle>Agent card preview</SectionTitle>
-        <pre className="overflow-x-auto rounded-xl border border-white/5 bg-slate-900/60 p-4 font-mono text-xs text-slate-400">
+        <pre className="overflow-x-auto rounded-xl border border-border bg-muted p-4 font-mono text-xs text-muted-foreground">
           {JSON.stringify(
             address
               ? buildMonTrustAgentCard(origin, address)
