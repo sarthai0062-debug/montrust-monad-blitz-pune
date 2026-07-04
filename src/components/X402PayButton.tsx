@@ -2,8 +2,18 @@
 
 import { useState } from "react";
 import { Loader2, CreditCard } from "lucide-react";
-import { payForVisionAccess, payForTrustReportAnalysis, getX402PaymentSummary } from "@/lib/x402/client";
+import {
+  payForVisionAccess,
+  payForTrustReportAnalysis,
+  getX402PaymentSummary,
+  type PaidTrustReportResponse,
+} from "@/lib/x402/client";
 import { isMetaMaskInstalled } from "@/lib/metamaskWallet";
+import {
+  buildPaymentReceiptFromX402Response,
+  downloadTrustReportPdf,
+} from "@/lib/trustReportPdf";
+import type { TrustReport } from "@/lib/trustReport";
 import { DEPLOYED } from "@/lib/constants";
 import { notify } from "@/lib/toast";
 import { Button } from "./ui";
@@ -14,8 +24,28 @@ interface X402PayButtonProps {
   mode?: "vision" | "trust-report";
   endpointUrl?: string;
   disabled?: boolean;
+  report?: TrustReport | null;
   onSuccess?: (data: unknown) => void;
   onError?: (message: string) => void;
+}
+
+async function downloadReportAfterPayment(
+  report: TrustReport,
+  data: PaidTrustReportResponse,
+  txHash: string,
+  payer?: string
+) {
+  const receipt = buildPaymentReceiptFromX402Response(
+    {
+      amount: data.amount,
+      asset: data.asset,
+      network: data.network,
+      payTo: data.payTo,
+    },
+    txHash,
+    payer
+  );
+  await downloadTrustReportPdf(report, receipt);
 }
 
 export function X402PayButton({
@@ -24,6 +54,7 @@ export function X402PayButton({
   mode = "vision",
   endpointUrl,
   disabled,
+  report,
   onSuccess,
   onError,
 }: X402PayButtonProps) {
@@ -51,7 +82,7 @@ export function X402PayButton({
         : "Processing x402 vision payment…"
     );
     try {
-      const res =
+      const result =
         mode === "trust-report"
           ? await payForTrustReportAnalysis({
               agentId,
@@ -62,18 +93,66 @@ export function X402PayButton({
               trustProofHash,
               agentId,
             });
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error ?? data.message ?? `HTTP ${res.status}`);
+
+      if (!result.ok) {
+        const err = result.data as { error?: string; message?: string };
+        throw new Error(err?.error ?? err?.message ?? `HTTP ${result.status}`);
       }
+
       notify.dismiss(toastId);
-      notify.success("x402 payment successful", {
-        description:
-          mode === "trust-report"
-            ? "Trust report analysis unlocked"
-            : "Vision resource unlocked — settlement confirmed",
-      });
-      onSuccess?.(data);
+
+      if (mode === "trust-report") {
+        const data = result.data as PaidTrustReportResponse;
+        if (!data.report || !result.txHash) {
+          throw new Error("Paid trust report response was incomplete.");
+        }
+
+        await downloadReportAfterPayment(
+          data.report,
+          data,
+          result.txHash,
+          result.payer ?? undefined
+        );
+
+        notify.success("x402 payment successful", {
+          description: "Trust report unlocked — PDF downloaded",
+        });
+        onSuccess?.({
+          ...(data as object),
+          txHash: result.txHash,
+          payer: result.payer,
+        });
+        return;
+      }
+
+      if (result.txHash && report) {
+        const data = result.data as PaidTrustReportResponse;
+        const receipt = buildPaymentReceiptFromX402Response(
+          {
+            amount: data.amount ?? summary.price,
+            asset: data.asset ?? summary.asset,
+            network: data.network ?? summary.network,
+            payTo: data.payTo ?? summary.payTo,
+          },
+          result.txHash,
+          result.payer ?? undefined
+        );
+        await downloadTrustReportPdf(report, receipt);
+        notify.success("x402 payment successful", {
+          description: "Vision access unlocked — trust report PDF downloaded",
+        });
+        onSuccess?.({
+          ...(result.data as object),
+          txHash: result.txHash,
+          payer: result.payer,
+          receipt,
+        });
+      } else {
+        notify.success("x402 payment successful", {
+          description: "Vision resource unlocked — settlement confirmed",
+        });
+        onSuccess?.(result.data);
+      }
     } catch (e) {
       notify.dismiss(toastId);
       const msg = e instanceof Error ? e.message : "x402 payment failed";
@@ -100,7 +179,11 @@ export function X402PayButton({
       </Button>
       <p className="text-[10px] text-muted-foreground">
         {summary.price} {summary.asset} on {summary.network} — MetaMask sends native MON to seller.
-        {mode === "vision" ? " Settlement only if trust checks pass." : ""}
+        {mode === "trust-report"
+          ? " PDF report downloads automatically after payment."
+          : report
+            ? " PDF trust report downloads after payment."
+            : " Settlement only if trust checks pass."}
       </p>
     </div>
   );

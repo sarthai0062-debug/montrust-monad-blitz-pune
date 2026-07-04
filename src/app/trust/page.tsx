@@ -14,8 +14,14 @@ import {
 import { X402PayButton } from "@/components/X402PayButton";
 import { DEPLOYED, DEMO_AGENT } from "@/lib/constants";
 import type { TrustReport } from "@/lib/trustReport";
+import type { PaidTrustReportResponse } from "@/lib/x402/client";
+import {
+  downloadTrustReportPdf,
+  buildPaymentReceiptFromX402Response,
+  type TrustReportPaymentReceipt,
+} from "@/lib/trustReportPdf";
 import { notify } from "@/lib/toast";
-import { Loader2, ShieldQuestion, CreditCard, Link2 } from "lucide-react";
+import { Loader2, ShieldQuestion, CreditCard, Link2, Download } from "lucide-react";
 
 interface X402ConfigResponse {
   payment: {
@@ -36,6 +42,7 @@ export default function TrustPage() {
   const [loading, setLoading] = useState(true);
   const [x402Status, setX402Status] = useState<string | null>(null);
   const [x402Loading, setX402Loading] = useState(false);
+  const [paymentReceipt, setPaymentReceipt] = useState<TrustReportPaymentReceipt | null>(null);
   const skipLoadToast = useRef(true);
 
   const origin =
@@ -101,6 +108,43 @@ export default function TrustPage() {
       notify.error("x402 probe failed", { description: msg });
     } finally {
       setX402Loading(false);
+    }
+  }
+
+  function handlePaidTrustReport(data: unknown, txHash: string, payer?: string) {
+    const paid = data as PaidTrustReportResponse;
+    if (paid.report) {
+      setReport(paid.report);
+    }
+    if (txHash) {
+      setPaymentReceipt(
+        buildPaymentReceiptFromX402Response(
+          {
+            amount: paid.amount,
+            asset: paid.asset,
+            network: paid.network,
+            payTo: paid.payTo,
+          },
+          txHash,
+          payer
+        )
+      );
+      setX402Status(
+        `Payment settled · tx ${txHash.slice(0, 10)}… · PDF downloaded`
+      );
+    }
+  }
+
+  async function redownloadPdf() {
+    if (!report) return;
+    try {
+      await downloadTrustReportPdf(report, paymentReceipt ?? undefined);
+      notify.success("PDF downloaded", {
+        description: "MonTrust trust report saved to your downloads folder.",
+      });
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "PDF download failed";
+      notify.error("PDF download failed", { description: msg });
     }
   }
 
@@ -272,25 +316,62 @@ export default function TrustPage() {
                 agentId={agentId}
                 endpointUrl={resolvedEndpoint}
                 trustProofHash={report.proofHash}
-                onSuccess={(data) =>
-                  setX402Status(
-                    `Paid analysis: ${(data as { report?: { overallStatus?: string } }).report?.overallStatus ?? "complete"}`
-                  )
-                }
+                report={report}
+                onSuccess={(data) => {
+                  const paid = data as PaidTrustReportResponse & {
+                    txHash?: string | null;
+                    payer?: string | null;
+                  };
+                  if (paid.txHash) {
+                    handlePaidTrustReport(paid, paid.txHash, paid.payer ?? undefined);
+                  }
+                }}
                 onError={setX402Status}
               />
 
               <X402PayButton
                 trustProofHash={report.proofHash}
                 agentId={agentId}
+                report={report}
                 disabled={!report.payWhenItWorks.eligible}
-                onSuccess={(data) =>
+                onSuccess={(data) => {
+                  const payload = data as {
+                    message?: string;
+                    txHash?: string | null;
+                    payer?: string | null;
+                    receipt?: TrustReportPaymentReceipt;
+                  };
+                  if (payload.receipt) {
+                    setPaymentReceipt(payload.receipt);
+                  } else if (payload.txHash) {
+                    setPaymentReceipt(
+                      buildPaymentReceiptFromX402Response(
+                        {
+                          amount: x402Config?.payment.amountMon ?? "0.1",
+                          asset: "MON",
+                          network: x402Config?.payment.network ?? "Monad Testnet",
+                          payTo: x402Config?.payment.payTo ?? "",
+                        },
+                        payload.txHash,
+                        payload.payer ?? undefined
+                      )
+                    );
+                  }
                   setX402Status(
-                    `Paid & unlocked: ${(data as { message?: string }).message ?? "success"}`
-                  )
-                }
+                    payload.txHash
+                      ? `Paid & unlocked: ${payload.message ?? "success"} · PDF downloaded`
+                      : `Paid & unlocked: ${payload.message ?? "success"}`
+                  );
+                }}
                 onError={setX402Status}
               />
+
+              {paymentReceipt && (
+                <Button variant="secondary" onClick={redownloadPdf}>
+                  <Download className="h-4 w-4" />
+                  Download PDF again
+                </Button>
+              )}
             </div>
 
             {!report.payWhenItWorks.eligible && (

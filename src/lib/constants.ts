@@ -29,6 +29,9 @@ export const DEMO_AGENT = {
 
 export const VISION_AGENT_NAME = "MonTrust Photo Proof Agent";
 
+/** NVIDIA NIM vision model — see .env.example NVIDIA_VISION_MODEL */
+export const VISION_MODEL = "minimaxai/minimax-m3";
+
 /** Deployed on Monad Testnet — see data/deployments.json */
 export const DEPLOYED = {
   proofAnchor: "0xc6d3bba40408ad9a706fde69716c1adbdb7aea75" as const,

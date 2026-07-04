@@ -14,9 +14,8 @@ import { monadTestnet } from "@/lib/chain";
 import { MONAD_TESTNET } from "@/lib/constants";
 import {
   detectBrowserWallets,
-  pickConnectorForProvider,
-  resolveWalletProvider,
-  type WalletProviderId,
+  isMetaMaskConnector,
+  pickMetaMaskConnector,
 } from "@/lib/wallet";
 import {
   getMetaMaskChainIdHex,
@@ -27,31 +26,13 @@ import { notify } from "@/lib/toast";
 import {
   AlertTriangle,
   CheckCircle2,
+  ExternalLink,
   Loader2,
   LogOut,
   Wallet,
-  X,
 } from "lucide-react";
 
-const WALLET_OPTIONS: {
-  id: WalletProviderId;
-  label: string;
-  description: string;
-  icon: string;
-}[] = [
-  {
-    id: "metaMask",
-    label: "MetaMask",
-    description: "Browser extension or mobile app",
-    icon: "🦊",
-  },
-  {
-    id: "rainbow",
-    label: "Rainbow",
-    description: "Rainbow browser extension",
-    icon: "🌈",
-  },
-];
+const METAMASK_INSTALL_URL = "https://metamask.io/download/";
 
 export function NetworkBadge() {
   return (
@@ -68,8 +49,7 @@ export function NetworkBadge() {
 
 export function WalletButton() {
   const [mounted, setMounted] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [installed, setInstalled] = useState({ metaMask: false, rainbow: false });
+  const [metaMaskInstalled, setMetaMaskInstalled] = useState(false);
 
   const { address, status, connector } = useAccount();
   const chainId = useChainId();
@@ -81,7 +61,6 @@ export function WalletButton() {
     chainId: monadTestnet.id,
   });
 
-  const provider = resolveWalletProvider(connector);
   const onMonadTestnet = chainId === monadTestnet.id;
   const wrongChain = status === "connected" && !onMonadTestnet;
   const isConnected = status === "connected" && !!address;
@@ -93,9 +72,19 @@ export function WalletButton() {
   const walletHydrated = useRef(false);
 
   useEffect(() => setMounted(true), []);
-  useEffect(() => setInstalled(detectBrowserWallets()), [modalOpen]);
   useEffect(() => {
-    if (!modalOpen && !isConnected) return;
+    setMetaMaskInstalled(detectBrowserWallets().metaMask || isMetaMaskInstalled());
+  }, []);
+
+  useEffect(() => {
+    if (!isConnected) return;
+    if (!isMetaMaskConnector(connector)) {
+      disconnect();
+    }
+  }, [connector, disconnect, isConnected]);
+
+  useEffect(() => {
+    if (!isConnected) return;
     const eth = getMetaMaskProvider();
     if (!eth?.on) return;
     const onChain = () => getMetaMaskChainIdHex();
@@ -103,10 +92,6 @@ export function WalletButton() {
     return () => {
       eth.removeListener?.("chainChanged", onChain);
     };
-  }, [modalOpen, isConnected]);
-
-  useEffect(() => {
-    if (isConnected) setModalOpen(false);
   }, [isConnected]);
 
   useEffect(() => {
@@ -138,13 +123,26 @@ export function WalletButton() {
 
   useEffect(() => {
     if (connectError) {
-      notify.error("Connection failed", { description: connectError.message });
+      notify.error("MetaMask connection failed", { description: connectError.message });
     }
   }, [connectError]);
 
-  function connectWallet(providerId: WalletProviderId) {
-    const target = pickConnectorForProvider(connectors, providerId);
-    if (!target) return;
+  function connectMetaMask() {
+    if (!metaMaskInstalled) {
+      notify.error("MetaMask required", {
+        description: "Install MetaMask to connect and pay on Monad Testnet.",
+      });
+      return;
+    }
+
+    const target = pickMetaMaskConnector(connectors);
+    if (!target) {
+      notify.error("MetaMask unavailable", {
+        description: "MetaMask connector could not be initialized.",
+      });
+      return;
+    }
+
     connect({ connector: target, chainId: monadTestnet.id });
   }
 
@@ -168,6 +166,9 @@ export function WalletButton() {
               <AlertTriangle className="h-3 w-3 shrink-0 text-amber-600" />
             )}
           </div>
+          <p className="mt-0.5 text-[10px] font-medium text-muted-foreground">
+            MetaMask
+          </p>
           <p className="mt-0.5 text-xs font-bold text-accent">
             {balanceLoading ? (
               <span className="text-muted-foreground">Loading…</span>
@@ -189,7 +190,7 @@ export function WalletButton() {
               onClick={() => switchChain({ chainId: monadTestnet.id })}
               className="mt-1.5 w-full rounded-md bg-amber-500 py-1 text-[10px] font-semibold text-white hover:bg-amber-600 disabled:opacity-60"
             >
-              {switching ? "Switching…" : "Switch to Monad"}
+              {switching ? "Switching…" : "Switch MetaMask to Monad"}
             </button>
           )}
         </div>
@@ -199,7 +200,7 @@ export function WalletButton() {
         <button
           type="button"
           onClick={() => disconnect()}
-          title={`Disconnect ${provider.label}`}
+          title="Disconnect MetaMask"
           className="flex shrink-0 items-center justify-center rounded-xl border border-border bg-card px-2 text-muted-foreground transition hover:border-rose-200 hover:bg-rose-50 hover:text-rose-600"
         >
           <LogOut className="h-3.5 w-3.5" />
@@ -209,12 +210,12 @@ export function WalletButton() {
   }
 
   return (
-    <>
+    <div className="flex min-w-0 flex-1 flex-col gap-2">
       <div className="flex min-w-0 flex-1 items-stretch gap-2">
         <button
           type="button"
-          disabled={isPending}
-          onClick={() => setModalOpen(true)}
+          disabled={isPending || !metaMaskInstalled}
+          onClick={connectMetaMask}
           className="flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl bg-accent px-3 py-2.5 text-sm font-semibold text-accent-foreground shadow-md shadow-accent/20 transition hover:bg-[#8270ff] disabled:opacity-60"
         >
           {isPending ? (
@@ -223,91 +224,39 @@ export function WalletButton() {
             <Wallet className="h-4 w-4 shrink-0" />
           )}
           <span className="truncate">
-            {isPending ? "Connecting…" : "Connect Wallet"}
+            {isPending ? "Connecting…" : "Connect MetaMask"}
           </span>
         </button>
         <NetworkBadge />
       </div>
 
-      {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
-          <div
-            className="absolute inset-0"
-            onClick={() => setModalOpen(false)}
-            aria-hidden
-          />
-          <div className="glass-panel glass-panel-glow relative w-full max-w-sm rounded-2xl p-5">
-            <div className="mb-4 flex items-center justify-between">
-              <h3 className="font-semibold text-foreground">Connect a wallet</h3>
-              <button
-                type="button"
-                onClick={() => setModalOpen(false)}
-                className="rounded-lg p-1 text-muted-foreground transition hover:bg-hover hover:text-foreground"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </div>
-
-            <p className="mb-3 text-xs text-muted-foreground">
-              Connect with MetaMask or Rainbow on{" "}
-              <strong className="text-accent">Monad Testnet (10143)</strong>
-            </p>
-
-            <div className="space-y-2">
-              {WALLET_OPTIONS.map((wallet) => {
-                const isInstalled =
-                  wallet.id === "metaMask"
-                    ? installed.metaMask || isMetaMaskInstalled()
-                    : installed.rainbow;
-                return (
-                  <button
-                    key={wallet.id}
-                    type="button"
-                    disabled={isPending || !isInstalled}
-                    onClick={() => connectWallet(wallet.id)}
-                    className="flex w-full items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 text-left transition hover:border-accent/30 hover:bg-accent-subtle disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    <span className="text-2xl" aria-hidden>
-                      {wallet.icon}
-                    </span>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-foreground">
-                        {wallet.label}
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        {wallet.description}
-                      </p>
-                    </div>
-                    <span
-                      className={`text-[10px] font-semibold uppercase tracking-wide ${
-                        isInstalled ? "text-emerald-600" : "text-dim"
-                      }`}
-                    >
-                      {isInstalled ? "Detected" : "Not installed"}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-
-            {connectError && (
-              <p className="mt-3 text-xs text-rose-600">{connectError.message}</p>
-            )}
-
-            <p className="mt-4 text-center text-[10px] text-muted-foreground">
-              Need MON?{" "}
-              <a
-                href={MONAD_TESTNET.faucetUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="text-accent hover:underline"
-              >
-                faucet.monad.xyz
-              </a>
-            </p>
-          </div>
-        </div>
+      {!metaMaskInstalled && (
+        <a
+          href={METAMASK_INSTALL_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center justify-center gap-1.5 text-[10px] font-medium text-accent hover:underline"
+        >
+          Install MetaMask
+          <ExternalLink className="h-3 w-3" />
+        </a>
       )}
-    </>
+
+      {connectError && (
+        <p className="text-[10px] text-rose-600">{connectError.message}</p>
+      )}
+
+      <p className="text-center text-[10px] text-muted-foreground">
+        Need MON?{" "}
+        <a
+          href={MONAD_TESTNET.faucetUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="text-accent hover:underline"
+        >
+          faucet.monad.xyz
+        </a>
+      </p>
+    </div>
   );
 }

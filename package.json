@@ -11,7 +11,8 @@
     "deploy:testnet": "tsx scripts/deploy-testnet.ts",
     "verify:onchain": "tsx scripts/verify-onchain.ts",
     "verify:contract": "tsx scripts/verify-contract.ts",
-    "test:e2e": "tsx scripts/e2e-full-test.ts"
+    "test:e2e": "tsx scripts/e2e-full-test.ts",
+    "test:pdf": "tsx scripts/test-trust-report-pdf.ts"
   },
   "dependencies": {
     "@metamask/connect-evm": "^2.1.0",
@@ -22,6 +23,8 @@
     "@x402/evm": "^2.17.0",
     "@x402/fetch": "^2.17.0",
     "@x402/next": "^2.17.0",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
     "lucide-react": "^1.23.0",
     "next": "16.2.10",
     "react": "19.2.4",

@@ -9,7 +9,10 @@ import {
   type WalletClient,
 } from "viem";
 import { monadTestnet } from "@/lib/chain";
-import { getMetaMaskProvider } from "@/lib/metamaskWallet";
+import {
+  getMetaMaskProvider,
+  requestMetaMaskAccounts,
+} from "@/lib/metamaskWallet";
 import { X402_CONFIG, MON_PAYMENT_TX_HEADER } from "./config";
 
 export interface NativeMonPayOptions {
@@ -17,7 +20,18 @@ export interface NativeMonPayOptions {
   agentId?: string;
 }
 
-function buildHeaders(options: NativeMonPayOptions): HeadersInit {
+export interface NativeMonPaymentResult {
+  ok: boolean;
+  status: number;
+  data: unknown;
+  txHash: string | null;
+  payer: `0x${string}` | null;
+}
+
+function buildHeaders(
+  options: NativeMonPayOptions,
+  txHash?: string
+): HeadersInit {
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
   };
@@ -27,10 +41,16 @@ function buildHeaders(options: NativeMonPayOptions): HeadersInit {
   if (options.agentId) {
     headers["X-TRUST-AGENT-ID"] = options.agentId;
   }
+  if (txHash) {
+    headers[MON_PAYMENT_TX_HEADER] = txHash;
+  }
   return headers;
 }
 
-async function getWalletClient(): Promise<WalletClient> {
+async function getMetaMaskWalletClient(): Promise<{
+  walletClient: WalletClient;
+  from: `0x${string}`;
+}> {
   const provider = getMetaMaskProvider();
   if (!provider) {
     throw new Error(
@@ -38,17 +58,19 @@ async function getWalletClient(): Promise<WalletClient> {
     );
   }
 
+  const accounts = await requestMetaMaskAccounts();
+  const from = accounts[0];
+  if (!from) {
+    throw new Error("Connect MetaMask on Monad Testnet before paying.");
+  }
+
   const walletClient = createWalletClient({
+    account: from,
     chain: monadTestnet,
     transport: custom(provider as import("viem").EIP1193Provider),
   });
 
-  const [address] = await walletClient.getAddresses();
-  if (!address) {
-    throw new Error("Connect MetaMask on Monad Testnet before paying.");
-  }
-
-  return walletClient;
+  return { walletClient, from };
 }
 
 async function ensureTestnetChain(): Promise<void> {
@@ -80,14 +102,20 @@ async function ensureTestnetChain(): Promise<void> {
   }
 }
 
+async function parseJsonResponse(response: Response): Promise<unknown> {
+  try {
+    return await response.json();
+  } catch {
+    return null;
+  }
+}
+
 export async function payWithNativeMon(
   url: string,
   options: NativeMonPayOptions = {}
-): Promise<Response> {
+): Promise<NativeMonPaymentResult> {
   await ensureTestnetChain();
-  const walletClient = await getWalletClient();
-  const [from] = await walletClient.getAddresses();
-  if (!from) throw new Error("No MetaMask account connected.");
+  const { walletClient, from } = await getMetaMaskWalletClient();
 
   const publicClient = createPublicClient({
     chain: monadTestnet,
@@ -107,7 +135,14 @@ export async function payWithNativeMon(
   });
 
   if (probe.status !== 402) {
-    return probe;
+    const data = await parseJsonResponse(probe);
+    return {
+      ok: probe.ok,
+      status: probe.status,
+      data,
+      txHash: null,
+      payer: from,
+    };
   }
 
   const txHash = await walletClient.sendTransaction({
@@ -119,13 +154,20 @@ export async function payWithNativeMon(
 
   await publicClient.waitForTransactionReceipt({ hash: txHash });
 
-  return fetch(url, {
+  const response = await fetch(url, {
     method: "GET",
-    headers: {
-      ...buildHeaders(options),
-      [MON_PAYMENT_TX_HEADER]: txHash,
-    },
+    headers: buildHeaders(options, txHash),
   });
+
+  const data = await parseJsonResponse(response);
+
+  return {
+    ok: response.ok,
+    status: response.status,
+    data,
+    txHash,
+    payer: from,
+  };
 }
 
 export function getX402PaymentSummary() {
@@ -134,5 +176,6 @@ export function getX402PaymentSummary() {
     asset: "MON",
     network: `Monad Testnet (${X402_CONFIG.chainId})`,
     payTo: X402_CONFIG.payTo,
+    wallet: "MetaMask",
   };
 }

@@ -3,15 +3,33 @@
 export {
   payWithNativeMon,
   getX402PaymentSummary,
+  type NativeMonPayOptions,
+  type NativeMonPaymentResult,
 } from "@/lib/x402/nativeMonClient";
 
-import { payWithNativeMon, type NativeMonPayOptions } from "@/lib/x402/nativeMonClient";
+import {
+  payWithNativeMon,
+  type NativeMonPayOptions,
+  type NativeMonPaymentResult,
+} from "@/lib/x402/nativeMonClient";
+import type { TrustReport } from "@/lib/trustReport";
 
 export type X402FetchOptions = NativeMonPayOptions;
 
+export interface PaidTrustReportResponse {
+  status: "unlocked";
+  mode: "x402-native-mon";
+  service: string;
+  network: string;
+  asset: string;
+  amount: string;
+  payTo: string;
+  report: TrustReport;
+}
+
 export async function payForVisionAccess(
   options: NativeMonPayOptions = {}
-): Promise<Response> {
+): Promise<NativeMonPaymentResult> {
   return payWithNativeMon("/api/x402/vision", options);
 }
 
@@ -19,7 +37,7 @@ export async function payForTrustReportAnalysis(options: {
   agentId: string;
   endpointUrl: string;
   proofHash?: string;
-}): Promise<Response> {
+}): Promise<NativeMonPaymentResult> {
   const params = new URLSearchParams({
     agentId: options.agentId,
     endpointUrl: options.endpointUrl,
