@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
       createdAt: new Date().toISOString(),
     };
 
-    await saveProof(stored);
+    await saveProof(stored).catch(() => undefined);
     return NextResponse.json({ proofHash, stored });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Invalid proof";

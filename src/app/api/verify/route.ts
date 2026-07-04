@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
       signer: body.signer,
       message: body.message,
     });
-    await saveVerification(result);
+    await saveVerification(result).catch(() => undefined);
     return NextResponse.json(result);
   } catch (e) {
     const message = e instanceof Error ? e.message : "Verification failed";

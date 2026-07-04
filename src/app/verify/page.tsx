@@ -34,10 +34,16 @@ export default function VerifyPage() {
   const origin =
     typeof window !== "undefined" ? window.location.origin : "";
 
-  async function runVerify(withSignature?: {
-    signature: string;
-    signer: string;
-  }) {
+  async function runVerify(
+    withSignature?: {
+      signature: string;
+      signer: string;
+      message?: string;
+    },
+    endpointOverride?: string
+  ) {
+    const targetEndpoint = endpointOverride ?? endpointUrl;
+    if (endpointOverride) setEndpointUrl(endpointOverride);
     setLoading(true);
     setError(null);
     try {
@@ -46,7 +52,7 @@ export default function VerifyPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           agentId,
-          endpointUrl,
+          endpointUrl: targetEndpoint,
           ...withSignature,
         }),
       });
@@ -198,9 +204,10 @@ export default function VerifyPage() {
           )}
           <Button
             variant="danger"
-            onClick={() => {
-              setEndpointUrl("https://fake-impersonator.evil.test/mcp");
-            }}
+            disabled={loading}
+            onClick={() =>
+              runVerify(undefined, "https://fake-impersonator.evil.test/mcp")
+            }
           >
             Try impersonator URL
           </Button>
