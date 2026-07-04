@@ -6,23 +6,35 @@ import {
   useWriteContract,
   useWaitForTransactionReceipt,
   usePublicClient,
+  useChainId,
+  useSwitchChain,
 } from "wagmi";
 import { decodeEventLog } from "viem";
 import { AppShell } from "@/components/AppShell";
 import { Card, PageHeader, Button, SectionTitle } from "@/components/ui";
 import { ERC8004 } from "@/lib/constants";
+import { monadTestnet } from "@/lib/chain";
 import { identityRegistryAbi } from "@/abi/identityRegistry";
 import { buildMonTrustAgentCard } from "@/lib/erc8004";
+import { buildDataUriJsonBase64 } from "@/lib/base64Json";
+import { isMetaMaskInstalled } from "@/lib/metamaskWallet";
 import { notify } from "@/lib/toast";
-import { Loader2, CheckCircle2, UserPlus } from "lucide-react";
+import { Loader2, CheckCircle2, UserPlus, AlertTriangle } from "lucide-react";
+
+const AGENT_ID_KEY = "montrust-agent-id";
 
 export default function RegisterPage() {
   const { address, isConnected } = useAccount();
+  const chainId = useChainId();
   const publicClient = usePublicClient();
+  const { switchChain, isPending: switching } = useSwitchChain();
+  const onMonadTestnet = chainId === monadTestnet.id;
+
   const [registeredId, setRegisteredId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const { writeContract, data: txHash, isPending } = useWriteContract();
+  const { writeContract, data: txHash, isPending, error: writeError } =
+    useWriteContract();
   const { isLoading: confirming, isSuccess } = useWaitForTransactionReceipt({
     hash: txHash,
   });
@@ -30,18 +42,44 @@ export default function RegisterPage() {
   const origin =
     typeof window !== "undefined" ? window.location.origin : "http://localhost:3000";
 
+  useEffect(() => {
+    const saved = localStorage.getItem(AGENT_ID_KEY);
+    if (saved) setRegisteredId(saved);
+  }, []);
+
+  useEffect(() => {
+    if (writeError) {
+      const msg = writeError.message;
+      setError(msg);
+      notify.error("Registration failed", { description: msg });
+    }
+  }, [writeError]);
+
   async function registerAgent() {
+    if (!isMetaMaskInstalled()) {
+      const msg = "Install MetaMask to register your agent on Monad Testnet.";
+      setError(msg);
+      notify.error("MetaMask required", { description: msg });
+      return;
+    }
     if (!address) {
-      setError("Connect your wallet on Monad Testnet first.");
+      setError("Connect MetaMask on Monad Testnet first.");
       notify.error("Wallet required", {
-        description: "Connect your wallet on Monad Testnet first.",
+        description: "Connect MetaMask on Monad Testnet first.",
+      });
+      return;
+    }
+    if (!onMonadTestnet) {
+      setError("Switch MetaMask to Monad Testnet (chain 10143) before registering.");
+      notify.error("Wrong network", {
+        description: "Switch MetaMask to Monad Testnet (10143).",
       });
       return;
     }
 
     setError(null);
     const card = buildMonTrustAgentCard(origin, address);
-    const json = JSON.stringify({
+    const uri = buildDataUriJsonBase64({
       ...card,
       registrations: [
         {
@@ -50,18 +88,20 @@ export default function RegisterPage() {
         },
       ],
     });
-    const uri = `data:application/json;base64,${btoa(json)}`;
 
+    notify.loading("Submitting registration to Monad Testnet…");
     writeContract({
       address: ERC8004.identityRegistry,
       abi: identityRegistryAbi,
       functionName: "register",
       args: [uri],
+      chainId: monadTestnet.id,
+      gas: 800_000n,
     });
   }
 
   useEffect(() => {
-    if (!isSuccess || !txHash || !publicClient || registeredId) return;
+    if (!isSuccess || !txHash || !publicClient) return;
     publicClient.getTransactionReceipt({ hash: txHash }).then((receipt) => {
       for (const log of receipt.logs) {
         try {
@@ -73,18 +113,20 @@ export default function RegisterPage() {
           if (decoded.eventName === "Registered") {
             const id = (decoded.args as { agentId: bigint }).agentId.toString();
             setRegisteredId(id);
+            localStorage.setItem(AGENT_ID_KEY, id);
           }
         } catch {
-          /* skip */
+          /* skip unrelated logs */
         }
       }
     });
-  }, [isSuccess, txHash, publicClient, registeredId]);
+  }, [isSuccess, txHash, publicClient]);
 
   useEffect(() => {
     if (registeredId && txHash) {
+      notify.dismiss();
       notify.txSuccess(
-        `Agent #${registeredId} registered`,
+        `Agent #${registeredId} registered on Monad`,
         txHash
       );
     }
@@ -94,7 +136,7 @@ export default function RegisterPage() {
 
   const steps = [
     <>
-      Connect wallet with MON on{" "}
+      Connect <strong className="text-foreground">MetaMask</strong> with MON on{" "}
       <strong className="text-foreground">Monad Testnet</strong> (chain 10143).
       Faucet: faucet.monad.xyz
     </>,
@@ -115,7 +157,7 @@ export default function RegisterPage() {
       <PageHeader
         step="Module 3 · Registration"
         title="Register MonTrust Vision Agent"
-        description="Mint an ERC-8004 identity on Monad Testnet. Your agent card lists this app's challenge endpoint and your wallet for signature verification."
+        description="Mint an ERC-8004 identity on Monad Testnet. Your agent card lists this app's challenge endpoint and your MetaMask wallet for signature verification."
       />
 
       <Card className="mb-6" glow>
@@ -130,11 +172,28 @@ export default function RegisterPage() {
           ))}
         </ol>
 
+        {isConnected && !onMonadTestnet && (
+          <div className="mt-4 flex flex-wrap items-center gap-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+            <AlertTriangle className="h-4 w-4 shrink-0" />
+            <span>MetaMask is on the wrong network.</span>
+            <Button
+              size="sm"
+              variant="secondary"
+              disabled={switching}
+              onClick={() => switchChain({ chainId: monadTestnet.id })}
+            >
+              {switching ? "Switching…" : "Switch to Monad Testnet"}
+            </Button>
+          </div>
+        )}
+
         <Button
           size="lg"
           className="mt-6"
           onClick={registerAgent}
-          disabled={!isConnected || isPending || confirming}
+          disabled={
+            !isConnected || !onMonadTestnet || isPending || confirming
+          }
         >
           {(isPending || confirming) && (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -143,17 +202,29 @@ export default function RegisterPage() {
           Register Agent On-Chain
         </Button>
         {error && (
-          <p className="mt-3 text-sm text-rose-600">{error}</p>
+          <p className="mt-3 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
+            {error}
+          </p>
         )}
         {registeredId && (
-          <div className="mt-4 flex items-center gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-sm text-emerald-200">
+          <div className="mt-4 flex items-center gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm">
             <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" />
-            <div>
+            <div className="text-emerald-800">
               <p className="font-semibold">Agent registered!</p>
-              <p className="text-emerald-700/80">
-                Agent ID: <strong>#{registeredId}</strong> — use this in Photo
+              <p className="mt-0.5">
+                Agent ID: <strong>#{registeredId}</strong> — saved for Photo
                 Proof and Agent Verifier.
               </p>
+              {txHash && (
+                <a
+                  href={`${monadTestnet.blockExplorers.default.url}/tx/${txHash}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-1 inline-block text-xs text-accent hover:underline"
+                >
+                  View transaction
+                </a>
+              )}
             </div>
           </div>
         )}
@@ -165,7 +236,7 @@ export default function RegisterPage() {
           {JSON.stringify(
             address
               ? buildMonTrustAgentCard(origin, address)
-              : { note: "Connect wallet to preview" },
+              : { note: "Connect MetaMask to preview" },
             null,
             2
           )}

@@ -89,7 +89,7 @@ async function resolveUriToJson(uri: string): Promise<unknown> {
 
 export function buildAgentRegistrationUri(
   card: AgentCard,
-  baseUrl: string
+  _baseUrl: string
 ): string {
   const registration = {
     ...card,
@@ -101,7 +101,7 @@ export function buildAgentRegistrationUri(
     ],
   };
   const json = JSON.stringify(registration);
-  const b64 = Buffer.from(json).toString("base64");
+  const b64 = Buffer.from(json, "utf8").toString("base64");
   return `data:application/json;base64,${b64}`;
 }
 

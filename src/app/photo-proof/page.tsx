@@ -22,6 +22,7 @@ import {
   StepPill,
 } from "@/components/ui";
 import { DEFAULT_TASKS, hashProof, verifyProofIntegrity } from "@/lib/proof";
+import { compressImageForVision } from "@/lib/image/compressForVision";
 import { getTaskImagePrompt } from "@/lib/taskImagePrompts";
 import { photoProofSchema, type PhotoProof, visionResultSchema } from "@/schemas/proof";
 import { proofAnchorAbi, proofAnchorBytecode } from "@/abi/proofAnchor";
@@ -33,6 +34,7 @@ import type { Hex } from "viem";
 
 const PROOF_REGISTRY_KEY = "montrust-proof-registry";
 const LEGACY_PROOF_REGISTRY_KEY = "trustlens-proof-registry";
+const AGENT_ID_KEY = "montrust-agent-id";
 
 type Step = "select" | "upload" | "analyze" | "hash" | "anchor" | "verify";
 
@@ -59,6 +61,8 @@ export default function PhotoProofPage() {
   );
   const [txHash, setTxHash] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState<string | null>(null);
+  const [compressInfo, setCompressInfo] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [verifyOk, setVerifyOk] = useState<boolean | null>(null);
   const [copiedPrompt, setCopiedPrompt] = useState(false);
@@ -82,6 +86,9 @@ export default function PhotoProofPage() {
       setRegistryAddress(saved);
       localStorage.setItem(PROOF_REGISTRY_KEY, saved);
     }
+    const savedAgentId = localStorage.getItem(AGENT_ID_KEY);
+    if (savedAgentId) setAgentId(savedAgentId);
+
     fetch("/api/deployment")
       .then((r) => r.json())
       .then((d) => {
@@ -89,7 +96,7 @@ export default function PhotoProofPage() {
           setRegistryAddress(d.contracts.proofAnchor);
           localStorage.setItem(PROOF_REGISTRY_KEY, d.contracts.proofAnchor);
         }
-        if (d.agent?.id) setAgentId(d.agent.id);
+        if (d.agent?.id && !savedAgentId) setAgentId(d.agent.id);
       })
       .catch(() => undefined);
     fetch("/api/vision")
@@ -130,72 +137,76 @@ export default function PhotoProofPage() {
 
   async function handleUpload(file: File) {
     setError(null);
+    setCompressInfo(null);
     setStep("upload");
-    const reader = new FileReader();
-    reader.onload = async () => {
-      const base64 = (reader.result as string).split(",")[1];
-      setImagePreview(reader.result as string);
+    setLoading(true);
+    setLoadingMessage("Compressing screenshot for vision audit…");
 
-      const buf = await file.arrayBuffer();
-      const hashBuffer = await crypto.subtle.digest(
-        "SHA-256",
-        buf
+    try {
+      const compressed = await compressImageForVision(file);
+      setCompressInfo(
+        `Optimized ${(compressed.originalBytes / 1024).toFixed(0)}KB → ${(compressed.compressedBytes / 1024).toFixed(0)}KB (${compressed.width}×${compressed.height})`
       );
+      setImagePreview(`data:${compressed.mimeType};base64,${compressed.base64}`);
+
+      const originalBuf = await file.arrayBuffer();
+      const hashBuffer = await crypto.subtle.digest("SHA-256", originalBuf);
       const hashHex = Array.from(new Uint8Array(hashBuffer))
         .map((b) => b.toString(16).padStart(2, "0"))
         .join("");
       setImageHash(hashHex);
       setStep("analyze");
-      setLoading(true);
+      setLoadingMessage(
+        "Running MiniMax-M3 security audit via NVIDIA NIM (usually 20–60s)…"
+      );
 
-      try {
-        const res = await fetch("/api/vision", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            imageBase64: base64,
-            mimeType: file.type,
-            question: task.question,
-          }),
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error ?? "Vision failed");
-        const { _meta, ...visionResult } = data as {
-          answer: string;
-          confidence: number;
-          reason: string;
-          _meta?: { model?: string; provider?: string };
-        };
-        const parsedVision = visionResultSchema.parse(visionResult);
-        setVision(parsedVision);
-        if (_meta?.model) setVisionModel(_meta.model);
-        setStep("hash");
+      const res = await fetch("/api/vision", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          imageBase64: compressed.base64,
+          mimeType: compressed.mimeType,
+          question: task.question,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? "Vision failed");
+      const { _meta, ...visionResult } = data as {
+        answer: string;
+        confidence: number;
+        reason: string;
+        _meta?: { model?: string; provider?: string };
+      };
+      const parsedVision = visionResultSchema.parse(visionResult);
+      setVision(parsedVision);
+      if (_meta?.model) setVisionModel(_meta.model);
+      setStep("hash");
 
-        const proofObj: PhotoProof = {
-          taskId: task.id,
-          taskQuestion: task.question,
-          imageHash: hashHex,
-          vision: parsedVision,
-          agentId: agentId || undefined,
-          timestamp: new Date().toISOString(),
-          version: "1",
-        };
-        setProof(proofObj);
-        const hash = hashProof(proofObj);
-        setProofHash(hash);
-        setStep("anchor");
-        notify.success("Vision analysis complete", {
-          description: `Answer: ${parsedVision.answer} (${(parsedVision.confidence * 100).toFixed(0)}% confidence)`,
-        });
-      } catch (e) {
-        const msg = e instanceof Error ? e.message : "Analysis failed";
-        setError(msg);
-        notify.error("Vision analysis failed", { description: msg });
-      } finally {
-        setLoading(false);
-      }
-    };
-    reader.readAsDataURL(file);
+      const proofObj: PhotoProof = {
+        taskId: task.id,
+        taskQuestion: task.question,
+        imageHash: hashHex,
+        vision: parsedVision,
+        agentId: agentId || undefined,
+        timestamp: new Date().toISOString(),
+        version: "1",
+      };
+      setProof(proofObj);
+      const hash = hashProof(proofObj);
+      setProofHash(hash);
+      setStep("anchor");
+      notify.success("Vision analysis complete", {
+        description: `Answer: ${parsedVision.answer} (${(parsedVision.confidence * 100).toFixed(0)}% confidence)`,
+      });
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "Analysis failed";
+      setError(msg);
+      setStep("select");
+      notify.error("Vision analysis failed", { description: msg });
+    } finally {
+      setLoading(false);
+      setLoadingMessage(null);
+    }
   }
 
   async function deployRegistry() {
@@ -209,6 +220,7 @@ export default function PhotoProofPage() {
     deployContract({
       abi: proofAnchorAbi,
       bytecode: proofAnchorBytecode,
+      chainId: monadTestnet.id,
     });
   }
 
@@ -231,6 +243,8 @@ export default function PhotoProofPage() {
       abi: proofAnchorAbi,
       functionName: "anchorProof",
       args: [proofHash, BigInt(agentId || "0")],
+      chainId: monadTestnet.id,
+      gas: 500_000n,
     });
   }
 
@@ -393,6 +407,15 @@ export default function PhotoProofPage() {
             )}
             Upload Screenshot Proof
           </Button>
+          {loading && loadingMessage && (
+            <p className="mt-3 flex items-center gap-2 rounded-lg border border-accent/20 bg-accent-subtle/50 px-3 py-2 text-xs text-accent">
+              <Loader2 className="h-3.5 w-3.5 animate-spin shrink-0" />
+              {loadingMessage}
+            </p>
+          )}
+          {compressInfo && (
+            <p className="mt-2 text-[10px] text-muted-foreground">{compressInfo}</p>
+          )}
           {error && (
             <p className="mt-2 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
               {error}

@@ -5,6 +5,8 @@ import {
   isNvidiaVisionConfigured,
 } from "@/lib/vision/nvidia";
 
+export const maxDuration = 60;
+
 const bodySchema = z.object({
   imageBase64: z.string().min(1),
   mimeType: z.string().default("image/jpeg"),
