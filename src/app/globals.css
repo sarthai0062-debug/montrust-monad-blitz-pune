@@ -1,26 +1,187 @@
 @import "tailwindcss";
 
+/* Monad brand palette — https://www.monad.xyz/brand-and-media-kit */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --monad-purple: #6e54ff;
+  --monad-purple-light: #836ef9;
+  --monad-lavender: #ddd7fe;
+  --monad-bg: #0e091c;
+  --monad-bg-deep: #07040f;
+  --monad-cyan: #85e6ff;
+  --monad-cyan-muted: #b9e3f9;
+  --monad-pink: #ff8ee4;
+  --monad-orange: #ffae45;
+
+  --bg-0: var(--monad-bg-deep);
+  --bg-1: var(--monad-bg);
+  --bg-2: #15102a;
+  --surface: rgba(14, 9, 28, 0.72);
+  --surface-solid: #15102a;
+  --surface-elevated: rgba(30, 22, 55, 0.75);
+  --border: rgba(110, 84, 255, 0.22);
+  --border-strong: rgba(110, 84, 255, 0.45);
+  --text: #fbfaf9;
+  --text-muted: #a8a3b8;
+  --text-dim: #6b6580;
+  --accent: var(--monad-purple);
+  --accent-bright: var(--monad-lavender);
+  --cyan: var(--monad-cyan);
+  --violet: var(--monad-purple-light);
+  --emerald: #34d399;
+  --amber: var(--monad-orange);
+  --rose: #ff6b8a;
+  --glow: rgba(110, 84, 255, 0.5);
+  --radius: 1rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg-0);
+  --color-foreground: var(--text);
+  --color-monad-purple: var(--monad-purple);
+  --color-monad-lavender: var(--monad-lavender);
+  --color-monad-cyan: var(--monad-cyan);
+  --color-monad-pink: var(--monad-pink);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-0);
+  color: var(--text);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: rgba(110, 84, 255, 0.4);
+  color: white;
+}
+
+.mesh-bg {
+  background-color: var(--bg-0);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(110, 84, 255, 0.28), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(133, 230, 255, 0.14), transparent 50%),
+    radial-gradient(ellipse 50% 30% at 50% 100%, rgba(255, 142, 228, 0.08), transparent 55%);
+}
+
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(110, 84, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(110, 84, 255, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+.glass-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+    0 20px 50px -20px rgba(0, 0, 0, 0.55);
+}
+
+.glass-panel-glow {
+  box-shadow:
+    0 0 0 1px rgba(221, 215, 254, 0.06) inset,
+    0 0 40px -10px var(--glow),
+    0 24px 60px -24px rgba(0, 0, 0, 0.55);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #fbfaf9 0%, var(--monad-lavender) 35%, var(--monad-cyan) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-border {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(110, 84, 255, 0.4),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Sonner toast overrides — Monad theme */
+[data-sonner-toaster] {
+  --normal-bg: #15102a;
+  --normal-border: rgba(110, 84, 255, 0.35);
+  --normal-text: #fbfaf9;
+  --success-bg: #15102a;
+  --success-border: rgba(52, 211, 153, 0.4);
+  --error-bg: #15102a;
+  --error-border: rgba(255, 107, 138, 0.4);
+  --info-bg: #15102a;
+  --info-border: rgba(133, 230, 255, 0.35);
+}
+
+[data-sonner-toast] {
+  font-family: var(--font-sans), system-ui, sans-serif !important;
+  backdrop-filter: blur(12px);
+}
+
+[data-sonner-toast][data-type="success"] [data-icon] {
+  color: #34d399 !important;
+}
+
+[data-sonner-toast][data-type="error"] [data-icon] {
+  color: #ff6b8a !important;
+}
+
+[data-sonner-toast][data-type="info"] [data-icon] {
+  color: var(--monad-cyan) !important;
+}
+
+[data-sonner-toast] [data-title] {
+  font-weight: 600 !important;
+}
+
+[data-sonner-toast] [data-button] {
+  background: var(--monad-purple) !important;
+  color: white !important;
+  border: none !important;
 }
