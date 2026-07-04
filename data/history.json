@@ -1,0 +1,2001 @@
+{
+  "verifications": [
+    {
+      "status": "warning",
+      "agentId": "1",
+      "endpointUrl": "https://monad-demo-agent.example.com/mcp",
+      "timestamp": "2026-07-04T11:00:35.578Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: The operation was aborted due to timeout"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783162835578-196a2a58",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783162835578-196a2a58\nEndpoint: https://monad-demo-agent.example.com/mcp"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "warning",
+      "agentId": "1",
+      "endpointUrl": "https://monad-demo-agent.example.com/mcp",
+      "timestamp": "2026-07-04T10:33:47.648Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783161227648-59a48449",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783161227648-59a48449\nEndpoint: https://monad-demo-agent.example.com/mcp"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "verified",
+      "agentId": "1786",
+      "endpointUrl": "http://localhost:3000/api/agent/challenge",
+      "timestamp": "2026-07-04T10:30:55.703Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1786 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"TrustLens Photo Proof Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": true,
+          "detail": "Endpoint returned a valid cryptographic signature for the nonce"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": true,
+          "detail": "Signer matches registered wallet 0xda49…4e73"
+        }
+      ],
+      "agentCard": {
+        "name": "TrustLens Photo Proof Agent",
+        "description": "Vision agent that inspects facility photos and anchors cryptographic proof hashes on Monad.",
+        "owner": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "wallet": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "registeredEndpoints": [
+          "http://localhost:3000/api/agent/challenge",
+          "http://localhost:3000/photo-proof"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJUcnVzdExlbnMgUGhvdG8gUHJvb2YgQWdlbnQiLCJkZXNjcmlwdGlvbiI6IlZpc2lvbiBhZ2VudCB0aGF0IGluc3BlY3RzIGZhY2lsaXR5IHBob3RvcyBhbmQgYW5jaG9ycyBjcnlwdG9ncmFwaGljIHByb29mIGhhc2hlcyBvbiBNb25hZC4iLCJpbWFnZSI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMC90cnVzdGxlbnMtaWNvbi5zdmciLCJzZXJ2aWNlcyI6W3sibmFtZSI6Ik1DUCIsImVuZHBvaW50IjoiaHR0cDovL2xvY2FsaG9zdDozMDAwL2FwaS9hZ2VudC9jaGFsbGVuZ2UiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9LHsibmFtZSI6ImFnZW50V2FsbGV0IiwiZW5kcG9pbnQiOiJlaXAxNTU6MTAxNDM6MHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIn0seyJuYW1lIjoid2ViIiwiZW5kcG9pbnQiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAvcGhvdG8tcHJvb2YifV0sImFjdGl2ZSI6dHJ1ZSwic3VwcG9ydGVkVHJ1c3QiOlsicmVwdXRhdGlvbiIsImNyeXB0by1lY29ub21pYyJdLCJ3YWxsZXRBZGRyZXNzIjoiMHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIiwicmVnaXN0cmF0aW9ucyI6W3siYWdlbnRJZCI6IlBFTkRJTkciLCJhZ2VudFJlZ2lzdHJ5IjoiZWlwMTU1OjEwMTQzOjB4ODAwNEE4MThCRkI5MTIyMzNjNDkxODcxYjNkODRjODlBNDk0QkQ5ZSJ9XX0="
+      },
+      "challenge": {
+        "nonce": "tl-1783161055703-890f4f99",
+        "signatureValid": true,
+        "signerAddress": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "message": "TrustLens Agent Verification\nNonce: tl-1783161055703-890f4f99\nEndpoint: http://localhost:3000/api/agent/challenge"
+      },
+      "summary": "This endpoint is cryptographically tied to the claimed ERC-8004 identity. Safe to interact."
+    },
+    {
+      "status": "failed",
+      "agentId": "1",
+      "endpointUrl": "https://fake-impersonator.evil.test/mcp",
+      "timestamp": "2026-07-04T10:18:41.410Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": false,
+          "detail": "Not listed. Registered: https://monad-demo-agent.example.com/.well-known/agent-card.json, https://monad-demo-agent.example.com/mcp"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783160321410-379bd8f6",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783160321410-379bd8f6\nEndpoint: https://fake-impersonator.evil.test/mcp"
+      },
+      "summary": "Likely impersonation. This endpoint is not tied to the claimed agent identity."
+    },
+    {
+      "status": "warning",
+      "agentId": "1",
+      "endpointUrl": "https://monad-demo-agent.example.com/mcp",
+      "timestamp": "2026-07-04T10:18:38.544Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783160318544-4be367ef",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783160318544-4be367ef\nEndpoint: https://monad-demo-agent.example.com/mcp"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "verified",
+      "agentId": "1786",
+      "endpointUrl": "http://localhost:3000/api/agent/challenge",
+      "timestamp": "2026-07-04T10:17:03.873Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1786 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"TrustLens Photo Proof Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": true,
+          "detail": "Endpoint returned a valid cryptographic signature for the nonce"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": true,
+          "detail": "Signer matches registered wallet 0xda49…4e73"
+        }
+      ],
+      "agentCard": {
+        "name": "TrustLens Photo Proof Agent",
+        "description": "Vision agent that inspects facility photos and anchors cryptographic proof hashes on Monad.",
+        "owner": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "wallet": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "registeredEndpoints": [
+          "http://localhost:3000/api/agent/challenge",
+          "http://localhost:3000/photo-proof"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJUcnVzdExlbnMgUGhvdG8gUHJvb2YgQWdlbnQiLCJkZXNjcmlwdGlvbiI6IlZpc2lvbiBhZ2VudCB0aGF0IGluc3BlY3RzIGZhY2lsaXR5IHBob3RvcyBhbmQgYW5jaG9ycyBjcnlwdG9ncmFwaGljIHByb29mIGhhc2hlcyBvbiBNb25hZC4iLCJpbWFnZSI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMC90cnVzdGxlbnMtaWNvbi5zdmciLCJzZXJ2aWNlcyI6W3sibmFtZSI6Ik1DUCIsImVuZHBvaW50IjoiaHR0cDovL2xvY2FsaG9zdDozMDAwL2FwaS9hZ2VudC9jaGFsbGVuZ2UiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9LHsibmFtZSI6ImFnZW50V2FsbGV0IiwiZW5kcG9pbnQiOiJlaXAxNTU6MTAxNDM6MHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIn0seyJuYW1lIjoid2ViIiwiZW5kcG9pbnQiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAvcGhvdG8tcHJvb2YifV0sImFjdGl2ZSI6dHJ1ZSwic3VwcG9ydGVkVHJ1c3QiOlsicmVwdXRhdGlvbiIsImNyeXB0by1lY29ub21pYyJdLCJ3YWxsZXRBZGRyZXNzIjoiMHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIiwicmVnaXN0cmF0aW9ucyI6W3siYWdlbnRJZCI6IlBFTkRJTkciLCJhZ2VudFJlZ2lzdHJ5IjoiZWlwMTU1OjEwMTQzOjB4ODAwNEE4MThCRkI5MTIyMzNjNDkxODcxYjNkODRjODlBNDk0QkQ5ZSJ9XX0="
+      },
+      "challenge": {
+        "nonce": "tl-1783160223873-d5bd0b69",
+        "signatureValid": true,
+        "signerAddress": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "message": "TrustLens Agent Verification\nNonce: tl-1783160223873-d5bd0b69\nEndpoint: http://localhost:3000/api/agent/challenge"
+      },
+      "summary": "This endpoint is cryptographically tied to the claimed ERC-8004 identity. Safe to interact."
+    },
+    {
+      "status": "verified",
+      "agentId": "1786",
+      "endpointUrl": "http://localhost:3000/api/agent/challenge",
+      "timestamp": "2026-07-04T10:15:33.603Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1786 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"TrustLens Photo Proof Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": true,
+          "detail": "Endpoint returned a valid cryptographic signature for the nonce"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": true,
+          "detail": "Signer matches registered wallet 0xda49…4e73"
+        }
+      ],
+      "agentCard": {
+        "name": "TrustLens Photo Proof Agent",
+        "description": "Vision agent that inspects facility photos and anchors cryptographic proof hashes on Monad.",
+        "owner": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "wallet": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "registeredEndpoints": [
+          "http://localhost:3000/api/agent/challenge",
+          "http://localhost:3000/photo-proof"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJUcnVzdExlbnMgUGhvdG8gUHJvb2YgQWdlbnQiLCJkZXNjcmlwdGlvbiI6IlZpc2lvbiBhZ2VudCB0aGF0IGluc3BlY3RzIGZhY2lsaXR5IHBob3RvcyBhbmQgYW5jaG9ycyBjcnlwdG9ncmFwaGljIHByb29mIGhhc2hlcyBvbiBNb25hZC4iLCJpbWFnZSI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMC90cnVzdGxlbnMtaWNvbi5zdmciLCJzZXJ2aWNlcyI6W3sibmFtZSI6Ik1DUCIsImVuZHBvaW50IjoiaHR0cDovL2xvY2FsaG9zdDozMDAwL2FwaS9hZ2VudC9jaGFsbGVuZ2UiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9LHsibmFtZSI6ImFnZW50V2FsbGV0IiwiZW5kcG9pbnQiOiJlaXAxNTU6MTAxNDM6MHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIn0seyJuYW1lIjoid2ViIiwiZW5kcG9pbnQiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAvcGhvdG8tcHJvb2YifV0sImFjdGl2ZSI6dHJ1ZSwic3VwcG9ydGVkVHJ1c3QiOlsicmVwdXRhdGlvbiIsImNyeXB0by1lY29ub21pYyJdLCJ3YWxsZXRBZGRyZXNzIjoiMHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIiwicmVnaXN0cmF0aW9ucyI6W3siYWdlbnRJZCI6IlBFTkRJTkciLCJhZ2VudFJlZ2lzdHJ5IjoiZWlwMTU1OjEwMTQzOjB4ODAwNEE4MThCRkI5MTIyMzNjNDkxODcxYjNkODRjODlBNDk0QkQ5ZSJ9XX0="
+      },
+      "challenge": {
+        "nonce": "tl-1783160133603-2b13d39e",
+        "signatureValid": true,
+        "signerAddress": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "message": "TrustLens Agent Verification\nNonce: tl-1783160133603-2b13d39e\nEndpoint: http://localhost:3000/api/agent/challenge"
+      },
+      "summary": "This endpoint is cryptographically tied to the claimed ERC-8004 identity. Safe to interact."
+    },
+    {
+      "status": "warning",
+      "agentId": "1786",
+      "endpointUrl": "http://localhost:3000/api/agent/challenge",
+      "timestamp": "2026-07-04T10:11:20.165Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1786 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"TrustLens Photo Proof Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: No signature in response"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "TrustLens Photo Proof Agent",
+        "description": "Vision agent that inspects facility photos and anchors cryptographic proof hashes on Monad.",
+        "owner": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "wallet": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "registeredEndpoints": [
+          "http://localhost:3000/api/agent/challenge",
+          "http://localhost:3000/photo-proof"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJUcnVzdExlbnMgUGhvdG8gUHJvb2YgQWdlbnQiLCJkZXNjcmlwdGlvbiI6IlZpc2lvbiBhZ2VudCB0aGF0IGluc3BlY3RzIGZhY2lsaXR5IHBob3RvcyBhbmQgYW5jaG9ycyBjcnlwdG9ncmFwaGljIHByb29mIGhhc2hlcyBvbiBNb25hZC4iLCJpbWFnZSI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMC90cnVzdGxlbnMtaWNvbi5zdmciLCJzZXJ2aWNlcyI6W3sibmFtZSI6Ik1DUCIsImVuZHBvaW50IjoiaHR0cDovL2xvY2FsaG9zdDozMDAwL2FwaS9hZ2VudC9jaGFsbGVuZ2UiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9LHsibmFtZSI6ImFnZW50V2FsbGV0IiwiZW5kcG9pbnQiOiJlaXAxNTU6MTAxNDM6MHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIn0seyJuYW1lIjoid2ViIiwiZW5kcG9pbnQiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAvcGhvdG8tcHJvb2YifV0sImFjdGl2ZSI6dHJ1ZSwic3VwcG9ydGVkVHJ1c3QiOlsicmVwdXRhdGlvbiIsImNyeXB0by1lY29ub21pYyJdLCJ3YWxsZXRBZGRyZXNzIjoiMHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIiwicmVnaXN0cmF0aW9ucyI6W3siYWdlbnRJZCI6IlBFTkRJTkciLCJhZ2VudFJlZ2lzdHJ5IjoiZWlwMTU1OjEwMTQzOjB4ODAwNEE4MThCRkI5MTIyMzNjNDkxODcxYjNkODRjODlBNDk0QkQ5ZSJ9XX0="
+      },
+      "challenge": {
+        "nonce": "tl-1783159880165-205e752b",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783159880165-205e752b\nEndpoint: http://localhost:3000/api/agent/challenge"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "warning",
+      "agentId": "1786",
+      "endpointUrl": "http://localhost:3000/api/agent/challenge",
+      "timestamp": "2026-07-04T10:11:12.562Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1786 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"TrustLens Photo Proof Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: No signature in response"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "TrustLens Photo Proof Agent",
+        "description": "Vision agent that inspects facility photos and anchors cryptographic proof hashes on Monad.",
+        "owner": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "wallet": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "registeredEndpoints": [
+          "http://localhost:3000/api/agent/challenge",
+          "http://localhost:3000/photo-proof"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJUcnVzdExlbnMgUGhvdG8gUHJvb2YgQWdlbnQiLCJkZXNjcmlwdGlvbiI6IlZpc2lvbiBhZ2VudCB0aGF0IGluc3BlY3RzIGZhY2lsaXR5IHBob3RvcyBhbmQgYW5jaG9ycyBjcnlwdG9ncmFwaGljIHByb29mIGhhc2hlcyBvbiBNb25hZC4iLCJpbWFnZSI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMC90cnVzdGxlbnMtaWNvbi5zdmciLCJzZXJ2aWNlcyI6W3sibmFtZSI6Ik1DUCIsImVuZHBvaW50IjoiaHR0cDovL2xvY2FsaG9zdDozMDAwL2FwaS9hZ2VudC9jaGFsbGVuZ2UiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9LHsibmFtZSI6ImFnZW50V2FsbGV0IiwiZW5kcG9pbnQiOiJlaXAxNTU6MTAxNDM6MHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIn0seyJuYW1lIjoid2ViIiwiZW5kcG9pbnQiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAvcGhvdG8tcHJvb2YifV0sImFjdGl2ZSI6dHJ1ZSwic3VwcG9ydGVkVHJ1c3QiOlsicmVwdXRhdGlvbiIsImNyeXB0by1lY29ub21pYyJdLCJ3YWxsZXRBZGRyZXNzIjoiMHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIiwicmVnaXN0cmF0aW9ucyI6W3siYWdlbnRJZCI6IlBFTkRJTkciLCJhZ2VudFJlZ2lzdHJ5IjoiZWlwMTU1OjEwMTQzOjB4ODAwNEE4MThCRkI5MTIyMzNjNDkxODcxYjNkODRjODlBNDk0QkQ5ZSJ9XX0="
+      },
+      "challenge": {
+        "nonce": "tl-1783159872562-7d223a53",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783159872562-7d223a53\nEndpoint: http://localhost:3000/api/agent/challenge"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "warning",
+      "agentId": "1786",
+      "endpointUrl": "http://localhost:3000/api/agent/challenge",
+      "timestamp": "2026-07-04T10:09:28.229Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1786 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"TrustLens Photo Proof Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: No signature in response"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "TrustLens Photo Proof Agent",
+        "description": "Vision agent that inspects facility photos and anchors cryptographic proof hashes on Monad.",
+        "owner": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "wallet": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "registeredEndpoints": [
+          "http://localhost:3000/api/agent/challenge",
+          "http://localhost:3000/photo-proof"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJUcnVzdExlbnMgUGhvdG8gUHJvb2YgQWdlbnQiLCJkZXNjcmlwdGlvbiI6IlZpc2lvbiBhZ2VudCB0aGF0IGluc3BlY3RzIGZhY2lsaXR5IHBob3RvcyBhbmQgYW5jaG9ycyBjcnlwdG9ncmFwaGljIHByb29mIGhhc2hlcyBvbiBNb25hZC4iLCJpbWFnZSI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMC90cnVzdGxlbnMtaWNvbi5zdmciLCJzZXJ2aWNlcyI6W3sibmFtZSI6Ik1DUCIsImVuZHBvaW50IjoiaHR0cDovL2xvY2FsaG9zdDozMDAwL2FwaS9hZ2VudC9jaGFsbGVuZ2UiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9LHsibmFtZSI6ImFnZW50V2FsbGV0IiwiZW5kcG9pbnQiOiJlaXAxNTU6MTAxNDM6MHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIn0seyJuYW1lIjoid2ViIiwiZW5kcG9pbnQiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAvcGhvdG8tcHJvb2YifV0sImFjdGl2ZSI6dHJ1ZSwic3VwcG9ydGVkVHJ1c3QiOlsicmVwdXRhdGlvbiIsImNyeXB0by1lY29ub21pYyJdLCJ3YWxsZXRBZGRyZXNzIjoiMHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIiwicmVnaXN0cmF0aW9ucyI6W3siYWdlbnRJZCI6IlBFTkRJTkciLCJhZ2VudFJlZ2lzdHJ5IjoiZWlwMTU1OjEwMTQzOjB4ODAwNEE4MThCRkI5MTIyMzNjNDkxODcxYjNkODRjODlBNDk0QkQ5ZSJ9XX0="
+      },
+      "challenge": {
+        "nonce": "tl-1783159768229-81589cd4",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783159768229-81589cd4\nEndpoint: http://localhost:3000/api/agent/challenge"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "warning",
+      "agentId": "2",
+      "endpointUrl": "https://monad-demo-agent.example.com/mcp",
+      "timestamp": "2026-07-04T09:50:14.989Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #2 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0xf043B0d473a2EDD7C5D6F4d931334096B77A7EDC",
+        "wallet": "0xf043B0d473a2EDD7C5D6F4d931334096B77A7EDC",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "ipfs://QmebSk2w69oBsPR2tkNFcqxX3Ug9b3QfpBrDqSfes1QbLb"
+      },
+      "challenge": {
+        "nonce": "tl-1783158614989-41e2f45e",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783158614989-41e2f45e\nEndpoint: https://monad-demo-agent.example.com/mcp"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "warning",
+      "agentId": "1",
+      "endpointUrl": "https://monad-demo-agent.example.com/mcp",
+      "timestamp": "2026-07-04T09:48:36.680Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783158516680-af05d64a",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783158516680-af05d64a\nEndpoint: https://monad-demo-agent.example.com/mcp"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "warning",
+      "agentId": "1",
+      "endpointUrl": "https://monad-demo-agent.example.com/mcp",
+      "timestamp": "2026-07-04T09:46:01.314Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783158361314-f666c2e1",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783158361314-f666c2e1\nEndpoint: https://monad-demo-agent.example.com/mcp"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "warning",
+      "agentId": "1",
+      "endpointUrl": "https://monad-demo-agent.example.com/mcp",
+      "timestamp": "2026-07-04T09:45:14.264Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783158314264-faaef82a",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783158314264-faaef82a\nEndpoint: https://monad-demo-agent.example.com/mcp"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "warning",
+      "agentId": "1",
+      "endpointUrl": "https://monad-demo-agent.example.com/mcp",
+      "timestamp": "2026-07-04T09:44:45.398Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783158285398-c10a3222",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783158285398-c10a3222\nEndpoint: https://monad-demo-agent.example.com/mcp"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "failed",
+      "agentId": "1",
+      "endpointUrl": "https://fake-impersonator.evil.test/mcp",
+      "timestamp": "2026-07-04T09:42:19.371Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": false,
+          "detail": "Not listed. Registered: https://monad-demo-agent.example.com/.well-known/agent-card.json, https://monad-demo-agent.example.com/mcp"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783158139371-a7791932",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783158139371-a7791932\nEndpoint: https://fake-impersonator.evil.test/mcp"
+      },
+      "summary": "Likely impersonation. This endpoint is not tied to the claimed agent identity."
+    },
+    {
+      "status": "warning",
+      "agentId": "1",
+      "endpointUrl": "https://monad-demo-agent.example.com/mcp",
+      "timestamp": "2026-07-04T09:42:12.431Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783158132431-c70ea730",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783158132431-c70ea730\nEndpoint: https://monad-demo-agent.example.com/mcp"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "warning",
+      "agentId": "1786",
+      "endpointUrl": "http://localhost:3000/api/agent/challenge",
+      "timestamp": "2026-07-04T09:34:23.180Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1786 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"TrustLens Photo Proof Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: No signature in response"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "TrustLens Photo Proof Agent",
+        "description": "Vision agent that inspects facility photos and anchors cryptographic proof hashes on Monad.",
+        "owner": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "wallet": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "registeredEndpoints": [
+          "http://localhost:3000/api/agent/challenge",
+          "http://localhost:3000/photo-proof"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJUcnVzdExlbnMgUGhvdG8gUHJvb2YgQWdlbnQiLCJkZXNjcmlwdGlvbiI6IlZpc2lvbiBhZ2VudCB0aGF0IGluc3BlY3RzIGZhY2lsaXR5IHBob3RvcyBhbmQgYW5jaG9ycyBjcnlwdG9ncmFwaGljIHByb29mIGhhc2hlcyBvbiBNb25hZC4iLCJpbWFnZSI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMC90cnVzdGxlbnMtaWNvbi5zdmciLCJzZXJ2aWNlcyI6W3sibmFtZSI6Ik1DUCIsImVuZHBvaW50IjoiaHR0cDovL2xvY2FsaG9zdDozMDAwL2FwaS9hZ2VudC9jaGFsbGVuZ2UiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9LHsibmFtZSI6ImFnZW50V2FsbGV0IiwiZW5kcG9pbnQiOiJlaXAxNTU6MTAxNDM6MHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIn0seyJuYW1lIjoid2ViIiwiZW5kcG9pbnQiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAvcGhvdG8tcHJvb2YifV0sImFjdGl2ZSI6dHJ1ZSwic3VwcG9ydGVkVHJ1c3QiOlsicmVwdXRhdGlvbiIsImNyeXB0by1lY29ub21pYyJdLCJ3YWxsZXRBZGRyZXNzIjoiMHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIiwicmVnaXN0cmF0aW9ucyI6W3siYWdlbnRJZCI6IlBFTkRJTkciLCJhZ2VudFJlZ2lzdHJ5IjoiZWlwMTU1OjEwMTQzOjB4ODAwNEE4MThCRkI5MTIyMzNjNDkxODcxYjNkODRjODlBNDk0QkQ5ZSJ9XX0="
+      },
+      "challenge": {
+        "nonce": "tl-1783157663180-d9f1c107",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783157663180-d9f1c107\nEndpoint: http://localhost:3000/api/agent/challenge"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "warning",
+      "agentId": "1",
+      "endpointUrl": "https://monad-demo-agent.example.com/mcp",
+      "timestamp": "2026-07-04T09:32:26.323Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783157546323-734dbf9d",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783157546323-734dbf9d\nEndpoint: https://monad-demo-agent.example.com/mcp"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "warning",
+      "agentId": "1786",
+      "endpointUrl": "http://localhost:3000/api/agent/challenge",
+      "timestamp": "2026-07-04T09:30:27.970Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1786 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"TrustLens Photo Proof Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: No signature in response"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "TrustLens Photo Proof Agent",
+        "description": "Vision agent that inspects facility photos and anchors cryptographic proof hashes on Monad.",
+        "owner": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "wallet": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "registeredEndpoints": [
+          "http://localhost:3000/api/agent/challenge",
+          "http://localhost:3000/photo-proof"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJUcnVzdExlbnMgUGhvdG8gUHJvb2YgQWdlbnQiLCJkZXNjcmlwdGlvbiI6IlZpc2lvbiBhZ2VudCB0aGF0IGluc3BlY3RzIGZhY2lsaXR5IHBob3RvcyBhbmQgYW5jaG9ycyBjcnlwdG9ncmFwaGljIHByb29mIGhhc2hlcyBvbiBNb25hZC4iLCJpbWFnZSI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMC90cnVzdGxlbnMtaWNvbi5zdmciLCJzZXJ2aWNlcyI6W3sibmFtZSI6Ik1DUCIsImVuZHBvaW50IjoiaHR0cDovL2xvY2FsaG9zdDozMDAwL2FwaS9hZ2VudC9jaGFsbGVuZ2UiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9LHsibmFtZSI6ImFnZW50V2FsbGV0IiwiZW5kcG9pbnQiOiJlaXAxNTU6MTAxNDM6MHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIn0seyJuYW1lIjoid2ViIiwiZW5kcG9pbnQiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAvcGhvdG8tcHJvb2YifV0sImFjdGl2ZSI6dHJ1ZSwic3VwcG9ydGVkVHJ1c3QiOlsicmVwdXRhdGlvbiIsImNyeXB0by1lY29ub21pYyJdLCJ3YWxsZXRBZGRyZXNzIjoiMHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIiwicmVnaXN0cmF0aW9ucyI6W3siYWdlbnRJZCI6IlBFTkRJTkciLCJhZ2VudFJlZ2lzdHJ5IjoiZWlwMTU1OjEwMTQzOjB4ODAwNEE4MThCRkI5MTIyMzNjNDkxODcxYjNkODRjODlBNDk0QkQ5ZSJ9XX0="
+      },
+      "challenge": {
+        "nonce": "tl-1783157427970-3493f7f0",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783157427970-3493f7f0\nEndpoint: http://localhost:3000/api/agent/challenge"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "failed",
+      "agentId": "1",
+      "endpointUrl": "https://fake-impersonator.evil.test/mcp",
+      "timestamp": "2026-07-04T09:11:00.277Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": false,
+          "detail": "Not listed. Registered: https://monad-demo-agent.example.com/.well-known/agent-card.json, https://monad-demo-agent.example.com/mcp"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783156260277-be58eef7",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783156260277-be58eef7\nEndpoint: https://fake-impersonator.evil.test/mcp"
+      },
+      "summary": "Likely impersonation. This endpoint is not tied to the claimed agent identity."
+    },
+    {
+      "status": "warning",
+      "agentId": "1",
+      "endpointUrl": "https://monad-demo-agent.example.com/mcp",
+      "timestamp": "2026-07-04T09:10:47.152Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783156247152-137dbeac",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783156247152-137dbeac\nEndpoint: https://monad-demo-agent.example.com/mcp"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "failed",
+      "agentId": "1",
+      "endpointUrl": "https://fake-impersonator.evil.test/mcp",
+      "timestamp": "2026-07-04T09:10:19.420Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": false,
+          "detail": "Not listed. Registered: https://monad-demo-agent.example.com/.well-known/agent-card.json, https://monad-demo-agent.example.com/mcp"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783156219420-226e8609",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783156219420-226e8609\nEndpoint: https://fake-impersonator.evil.test/mcp"
+      },
+      "summary": "Likely impersonation. This endpoint is not tied to the claimed agent identity."
+    },
+    {
+      "status": "warning",
+      "agentId": "1",
+      "endpointUrl": "https://monad-demo-agent.example.com/mcp",
+      "timestamp": "2026-07-04T09:10:11.156Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783156211156-2b1df9f0",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783156211156-2b1df9f0\nEndpoint: https://monad-demo-agent.example.com/mcp"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "warning",
+      "agentId": "1786",
+      "endpointUrl": "http://localhost:3000/api/agent/challenge",
+      "timestamp": "2026-07-04T09:09:01.283Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1786 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"TrustLens Photo Proof Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: No signature in response"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "TrustLens Photo Proof Agent",
+        "description": "Vision agent that inspects facility photos and anchors cryptographic proof hashes on Monad.",
+        "owner": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "wallet": "0xda49D74234318880a2b6af6BF76B390A55284e73",
+        "registeredEndpoints": [
+          "http://localhost:3000/api/agent/challenge",
+          "http://localhost:3000/photo-proof"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJUcnVzdExlbnMgUGhvdG8gUHJvb2YgQWdlbnQiLCJkZXNjcmlwdGlvbiI6IlZpc2lvbiBhZ2VudCB0aGF0IGluc3BlY3RzIGZhY2lsaXR5IHBob3RvcyBhbmQgYW5jaG9ycyBjcnlwdG9ncmFwaGljIHByb29mIGhhc2hlcyBvbiBNb25hZC4iLCJpbWFnZSI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzAwMC90cnVzdGxlbnMtaWNvbi5zdmciLCJzZXJ2aWNlcyI6W3sibmFtZSI6Ik1DUCIsImVuZHBvaW50IjoiaHR0cDovL2xvY2FsaG9zdDozMDAwL2FwaS9hZ2VudC9jaGFsbGVuZ2UiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9LHsibmFtZSI6ImFnZW50V2FsbGV0IiwiZW5kcG9pbnQiOiJlaXAxNTU6MTAxNDM6MHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIn0seyJuYW1lIjoid2ViIiwiZW5kcG9pbnQiOiJodHRwOi8vbG9jYWxob3N0OjMwMDAvcGhvdG8tcHJvb2YifV0sImFjdGl2ZSI6dHJ1ZSwic3VwcG9ydGVkVHJ1c3QiOlsicmVwdXRhdGlvbiIsImNyeXB0by1lY29ub21pYyJdLCJ3YWxsZXRBZGRyZXNzIjoiMHhkYTQ5RDc0MjM0MzE4ODgwYTJiNmFmNkJGNzZCMzkwQTU1Mjg0ZTczIiwicmVnaXN0cmF0aW9ucyI6W3siYWdlbnRJZCI6IlBFTkRJTkciLCJhZ2VudFJlZ2lzdHJ5IjoiZWlwMTU1OjEwMTQzOjB4ODAwNEE4MThCRkI5MTIyMzNjNDkxODcxYjNkODRjODlBNDk0QkQ5ZSJ9XX0="
+      },
+      "challenge": {
+        "nonce": "tl-1783156141283-e9804570",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783156141283-e9804570\nEndpoint: http://localhost:3000/api/agent/challenge"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "warning",
+      "agentId": "1",
+      "endpointUrl": "https://monad-demo-agent.example.com/mcp",
+      "timestamp": "2026-07-04T08:50:00.728Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783155000728-9ee77600",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783155000728-9ee77600\nEndpoint: https://monad-demo-agent.example.com/mcp"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "warning",
+      "agentId": "1",
+      "endpointUrl": "https://monad-demo-agent.example.com/mcp",
+      "timestamp": "2026-07-04T08:43:04.498Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783154584498-480453ed",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783154584498-480453ed\nEndpoint: https://monad-demo-agent.example.com/mcp"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "warning",
+      "agentId": "1",
+      "endpointUrl": "https://monad-demo-agent.example.com/mcp",
+      "timestamp": "2026-07-04T08:39:47.844Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783154387844-0f7233ac",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783154387844-0f7233ac\nEndpoint: https://monad-demo-agent.example.com/mcp"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "failed",
+      "agentId": "999999",
+      "endpointUrl": "https://example.com/mcp",
+      "timestamp": "2026-07-04T08:37:00.227Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": false,
+          "detail": "Agent #999999 not found — token may not exist"
+        }
+      ],
+      "agentCard": null,
+      "challenge": {
+        "nonce": "tl-1783154220227-abdb6bd4",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783154220227-abdb6bd4\nEndpoint: https://example.com/mcp"
+      },
+      "summary": "Agent ID does not exist on-chain."
+    },
+    {
+      "status": "failed",
+      "agentId": "1",
+      "endpointUrl": "https://fake.evil.test/mcp",
+      "timestamp": "2026-07-04T08:37:00.011Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": false,
+          "detail": "Not listed. Registered: https://monad-demo-agent.example.com/.well-known/agent-card.json, https://monad-demo-agent.example.com/mcp"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783154220011-370e57c2",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783154220011-370e57c2\nEndpoint: https://fake.evil.test/mcp"
+      },
+      "summary": "Likely impersonation. This endpoint is not tied to the claimed agent identity."
+    },
+    {
+      "status": "warning",
+      "agentId": "1",
+      "endpointUrl": "https://monad-demo-agent.example.com/mcp",
+      "timestamp": "2026-07-04T08:36:59.388Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783154219388-3e9b09a6",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783154219388-3e9b09a6\nEndpoint: https://monad-demo-agent.example.com/mcp"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    },
+    {
+      "status": "failed",
+      "agentId": "1",
+      "endpointUrl": "https://fake-impersonator.evil.test/mcp",
+      "timestamp": "2026-07-04T08:32:14.065Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": false,
+          "detail": "Not listed. Registered: https://monad-demo-agent.example.com/.well-known/agent-card.json, https://monad-demo-agent.example.com/mcp"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783153934065-95cd57ea",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783153934065-95cd57ea\nEndpoint: https://fake-impersonator.evil.test/mcp"
+      },
+      "summary": "Likely impersonation. This endpoint is not tied to the claimed agent identity."
+    },
+    {
+      "status": "warning",
+      "agentId": "1",
+      "endpointUrl": "https://monad-demo-agent.example.com/mcp",
+      "timestamp": "2026-07-04T08:32:09.763Z",
+      "checks": [
+        {
+          "id": "registry-lookup",
+          "label": "ERC-8004 Identity Registry",
+          "passed": true,
+          "detail": "Agent #1 resolved on Monad Testnet"
+        },
+        {
+          "id": "agent-card",
+          "label": "Agent Card Validation",
+          "passed": true,
+          "detail": "Valid card: \"Monad Demo Agent\""
+        },
+        {
+          "id": "endpoint-match",
+          "label": "Endpoint Match",
+          "passed": true,
+          "detail": "Submitted endpoint matches a URL in the on-chain agent card"
+        },
+        {
+          "id": "challenge-response",
+          "label": "Challenge Signature",
+          "passed": false,
+          "detail": "Challenge failed: fetch failed"
+        },
+        {
+          "id": "wallet-match",
+          "label": "Wallet Ownership",
+          "passed": false,
+          "detail": "No signer recovered from signature"
+        }
+      ],
+      "agentCard": {
+        "name": "Monad Demo Agent",
+        "description": "Demo agent for Monad testnet - direct contract calls",
+        "owner": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "wallet": "0x133603465aDdE7C39fa0E6E34b264E1573e1FD08",
+        "registeredEndpoints": [
+          "https://monad-demo-agent.example.com/.well-known/agent-card.json",
+          "https://monad-demo-agent.example.com/mcp"
+        ],
+        "tokenURI": "data:application/json;base64,eyJ0eXBlIjoiaHR0cHM6Ly9laXBzLmV0aGVyZXVtLm9yZy9FSVBTL2VpcC04MDA0I3JlZ2lzdHJhdGlvbi12MSIsIm5hbWUiOiJNb25hZCBEZW1vIEFnZW50IiwiZGVzY3JpcHRpb24iOiJEZW1vIGFnZW50IGZvciBNb25hZCB0ZXN0bmV0IC0gZGlyZWN0IGNvbnRyYWN0IGNhbGxzIiwiaW1hZ2UiOiJodHRwczovL2kuaW1ndXIuY29tL0pReE00bk8ucG5nIiwic2VydmljZXMiOlt7Im5hbWUiOiJBMkEiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS8ud2VsbC1rbm93bi9hZ2VudC1jYXJkLmpzb24iLCJ2ZXJzaW9uIjoiMC4zLjAifSx7Im5hbWUiOiJNQ1AiLCJlbmRwb2ludCI6Imh0dHBzOi8vbW9uYWQtZGVtby1hZ2VudC5leGFtcGxlLmNvbS9tY3AiLCJ2ZXJzaW9uIjoiMjAyNS0wNi0xOCJ9XSwieDQwMlN1cHBvcnQiOmZhbHNlLCJhY3RpdmUiOnRydWUsInJlZ2lzdHJhdGlvbnMiOltdLCJzdXBwb3J0ZWRUcnVzdCI6WyJyZXB1dGF0aW9uIl19"
+      },
+      "challenge": {
+        "nonce": "tl-1783153929763-be3f6d8f",
+        "signatureValid": false,
+        "signerAddress": null,
+        "message": "TrustLens Agent Verification\nNonce: tl-1783153929763-be3f6d8f\nEndpoint: https://monad-demo-agent.example.com/mcp"
+      },
+      "summary": "Endpoint is on the agent card but failed the signature challenge — possible impersonation or offline agent."
+    }
+  ],
+  "proofs": [
+    {
+      "id": "0c414a3f-66a4-4b1c-972c-f00ad34d2c2f",
+      "taskId": "equipment-off",
+      "taskQuestion": "Is all office equipment powered off and cables organized?",
+      "proof": {
+        "taskId": "equipment-off",
+        "taskQuestion": "Is all office equipment powered off and cables organized?",
+        "imageHash": "13e8e6e05c4bbdf3e0e0b9489e53230b7b0960fa2038cfa21a03bf7adc2ba1bb",
+        "vision": {
+          "answer": "yes",
+          "confidence": 0.85,
+          "reason": "The monitor screen is black (powered off), the laptop is closed, and the cables are neatly coiled and bundled on the desk surface."
+        },
+        "agentId": "1786",
+        "timestamp": "2026-07-04T10:35:36.747Z",
+        "version": "1"
+      },
+      "proofHash": "0x25333813fb11ae8f118d5a86f676736f62bc88190ef0708c597260e7fa89a671",
+      "txHash": "0x3cc1dee4d00a9602dc518668bc598eee7715abedf866a232bc776f7628f35d2d",
+      "agentId": "1786",
+      "anchored": true,
+      "createdAt": "2026-07-04T10:36:13.232Z"
+    },
+    {
+      "id": "74c74aa8-c5f9-42bf-915b-c3b9864708e6",
+      "taskId": "equipment-off",
+      "taskQuestion": "Is all office equipment powered off and cables organized?",
+      "proof": {
+        "taskId": "equipment-off",
+        "taskQuestion": "Is all office equipment powered off and cables organized?",
+        "imageHash": "13e8e6e05c4bbdf3e0e0b9489e53230b7b0960fa2038cfa21a03bf7adc2ba1bb",
+        "vision": {
+          "answer": "yes",
+          "confidence": 0.85,
+          "reason": "The monitor screen is black (powered off), the laptop is closed, and the cables are neatly coiled and bundled on the desk surface."
+        },
+        "agentId": "1786",
+        "timestamp": "2026-07-04T10:35:36.747Z",
+        "version": "1"
+      },
+      "proofHash": "0x25333813fb11ae8f118d5a86f676736f62bc88190ef0708c597260e7fa89a671",
+      "txHash": "0x3cc1dee4d00a9602dc518668bc598eee7715abedf866a232bc776f7628f35d2d",
+      "agentId": "1786",
+      "anchored": true,
+      "createdAt": "2026-07-04T10:36:11.434Z"
+    },
+    {
+      "id": "ecd0c13c-4fdb-4f66-933d-ca801aced846",
+      "taskId": "whiteboard-clean",
+      "taskQuestion": "Is the whiteboard fully cleaned?",
+      "proof": {
+        "taskId": "whiteboard-clean",
+        "taskQuestion": "Is the whiteboard fully cleaned?",
+        "imageHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "vision": {
+          "answer": "unclear",
+          "confidence": 0.3,
+          "reason": "The image is too dark and blurry to determine if the whiteboard is fully cleaned."
+        },
+        "agentId": "1786",
+        "timestamp": "2026-07-04T10:31:18.459Z",
+        "version": "1"
+      },
+      "proofHash": "0xed9afc1ff4a137d0706e10e97c8c1e176111e22edc9b77203b25dc306a1d624e",
+      "txHash": "anchored",
+      "agentId": "1786",
+      "anchored": true,
+      "createdAt": "2026-07-04T10:31:20.502Z"
+    },
+    {
+      "id": "96a93faf-9b3e-43e0-a761-1e305a8a4205",
+      "taskId": "whiteboard-clean",
+      "taskQuestion": "Is the whiteboard fully cleaned?",
+      "proof": {
+        "taskId": "whiteboard-clean",
+        "taskQuestion": "Is the whiteboard fully cleaned?",
+        "imageHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "vision": {
+          "answer": "unclear",
+          "confidence": 0.3,
+          "reason": "The image is too dark and blurry to determine if the whiteboard is fully cleaned."
+        },
+        "agentId": "1786",
+        "timestamp": "2026-07-04T10:31:18.459Z",
+        "version": "1"
+      },
+      "proofHash": "0xed9afc1ff4a137d0706e10e97c8c1e176111e22edc9b77203b25dc306a1d624e",
+      "agentId": "1786",
+      "anchored": false,
+      "createdAt": "2026-07-04T10:31:18.501Z"
+    },
+    {
+      "id": "c0a567fe-d257-4f0e-8dcf-9813458ffc75",
+      "taskId": "whiteboard-clean",
+      "taskQuestion": "Is the whiteboard fully cleaned?",
+      "proof": {
+        "taskId": "whiteboard-clean",
+        "taskQuestion": "Is the whiteboard fully cleaned?",
+        "imageHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "vision": {
+          "answer": "unclear",
+          "confidence": 0.3,
+          "reason": "The image is too dark and lacks visible detail to determine if the whiteboard is fully cleaned."
+        },
+        "agentId": "1786",
+        "timestamp": "2026-07-04T10:17:29.986Z",
+        "version": "1"
+      },
+      "proofHash": "0x48d5c53989df71458ac0d406401d2efed8bcd5e4b219c7fae1898a90af01738e",
+      "txHash": "anchored",
+      "agentId": "1786",
+      "anchored": true,
+      "createdAt": "2026-07-04T10:17:32.317Z"
+    },
+    {
+      "id": "9780eb20-4eda-401e-9ed6-80045e40d836",
+      "taskId": "whiteboard-clean",
+      "taskQuestion": "Is the whiteboard fully cleaned?",
+      "proof": {
+        "taskId": "whiteboard-clean",
+        "taskQuestion": "Is the whiteboard fully cleaned?",
+        "imageHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "vision": {
+          "answer": "unclear",
+          "confidence": 0.3,
+          "reason": "The image is too dark and lacks visible detail to determine if the whiteboard is fully cleaned."
+        },
+        "agentId": "1786",
+        "timestamp": "2026-07-04T10:17:29.986Z",
+        "version": "1"
+      },
+      "proofHash": "0x48d5c53989df71458ac0d406401d2efed8bcd5e4b219c7fae1898a90af01738e",
+      "agentId": "1786",
+      "anchored": false,
+      "createdAt": "2026-07-04T10:17:30.002Z"
+    },
+    {
+      "id": "8e577858-dc22-40cf-aabc-31d1ce85702f",
+      "taskId": "whiteboard-clean",
+      "taskQuestion": "Is the whiteboard fully cleaned?",
+      "proof": {
+        "taskId": "whiteboard-clean",
+        "taskQuestion": "Is the whiteboard fully cleaned?",
+        "imageHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "vision": {
+          "answer": "unclear",
+          "confidence": 0.2,
+          "reason": "The image is too dark and lacks visible detail to determine if a whiteboard is present or cleaned."
+        },
+        "agentId": "1786",
+        "timestamp": "2026-07-04T10:15:52.548Z",
+        "version": "1"
+      },
+      "proofHash": "0x259be01120e127c2825b83fab0dd0f8314a2bb10ea4af1743c35957c1691781e",
+      "txHash": "anchored",
+      "agentId": "1786",
+      "anchored": true,
+      "createdAt": "2026-07-04T10:15:55.096Z"
+    },
+    {
+      "id": "7489ae14-2d1e-4eaa-b25c-a8ee1840792b",
+      "taskId": "whiteboard-clean",
+      "taskQuestion": "Is the whiteboard fully cleaned?",
+      "proof": {
+        "taskId": "whiteboard-clean",
+        "taskQuestion": "Is the whiteboard fully cleaned?",
+        "imageHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "vision": {
+          "answer": "unclear",
+          "confidence": 0.2,
+          "reason": "The image is too dark and lacks visible detail to determine if a whiteboard is present or cleaned."
+        },
+        "agentId": "1786",
+        "timestamp": "2026-07-04T10:15:52.548Z",
+        "version": "1"
+      },
+      "proofHash": "0x259be01120e127c2825b83fab0dd0f8314a2bb10ea4af1743c35957c1691781e",
+      "agentId": "1786",
+      "anchored": false,
+      "createdAt": "2026-07-04T10:15:52.659Z"
+    }
+  ]
+}

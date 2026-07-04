@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "monskill": {
+      "source": "therealharpaljadeja/monskills",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "189d64670129eec37fa10283d5c9ff633361534a3c4fbb3a77a723c48b24abc8"
+    },
+    "smart-accounts-kit": {
+      "source": "MetaMask/smart-accounts-kit",
+      "sourceType": "github",
+      "skillPath": "skills/smart-accounts-kit/SKILL.md",
+      "computedHash": "f7bb5b52df162e2affec65262157fe96bdec3b84e4caab76a40f88c2432f480b"
+    },
+    "x402-payments": {
+      "source": "MetaMask/smart-accounts-kit",
+      "sourceType": "github",
+      "skillPath": "skills/x402-payments/SKILL.md",
+      "computedHash": "e92bcd17c3c8b3efd90d6f01f9ca30a0de585047897616113be945e5d88df2f9"
+    }
+  }
+}
